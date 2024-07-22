@@ -1,0 +1,1283 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1,viewport-fit=cover">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; */
+            font-feature-settings: 'liga' 1, 'calt' 1;
+            justify-content: center;
+            align-items: center
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-grow: 1;
+            height: 100vh;
+            position: relative;
+        }
+
+        .page {
+            overflow-x: hidden;
+            display: none;
+        }
+
+        .close-container {
+            opacity: 0;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 10px;
+        }
+
+        .preview-button,
+        #page-3 .page-3-next {
+            cursor: pointer;
+            user-select: none;
+            font-size: 30px;
+        }
+
+        .welcome-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .page-1-container,
+        .page-2-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .height-50 {
+            width: 100%;
+            height: 100vw;
+            max-width: 600px;
+        }
+
+        .welcome-content-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .page-1-container .welcome-content-box {
+            position: absolute;
+            top: 114px;
+            width: 100%;
+        }
+
+        .welcome-content-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-2-container .welcome-content-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .page2-button-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page2-button-container .bottom-content-box {
+            position: absolute;
+            top: 227px;
+        }
+
+        #page-3 .welcome-content-container {
+            height: 100%;
+        }
+
+        #page-3 .welcome-content-box {
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        #page-3 .welcome-content {
+            margin-top: 20px;
+        }
+
+        .welcome-title {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+            /* padding-top: 14px; */
+            line-height: normal;
+        }
+
+        .welcome-description {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .color-text {
+            color: #01DBD7;
+        }
+
+        .main-button {
+            border-radius: 10px;
+            background: #01DBD7;
+            color: #000;
+            font-weight: 600;
+            font-size: 18px;
+            width: 100%;
+            height: 50px;
+            outline: none;
+            border: none;
+        }
+
+        .bottom-content-box {
+            width: calc(100% - 40px);
+        }
+
+        .bottom-content-box a,
+        .bottom-content-box span {
+            color: #dbdbdb45;
+            font-size: 14px;
+        }
+
+        .content-description {
+            color: #929292;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .middle-content-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .middle-content-box svg {
+            width: 60%;
+            height: auto;
+            margin-top: 30px;
+        }
+
+        .list-content-box {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .list-content-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .list-content-item svg {
+            width: 12px;
+            height: 12px;
+        }
+
+
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0.8;
+            }
+        }
+
+        .animation-close-button {
+            -webkit-animation: fadeIn 3s 1s forwards;
+            animation: fadeIn 3s 1s forwards;
+        }
+
+        #page-3::-webkit-scrollbar {
+            display: none;
+        }
+
+        .selected-product-price {
+            display: block;
+            max-width: 200px;
+            overflow: hidden;
+        }
+
+        .legal {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-text-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            font-size: 12px;
+            padding-bottom: 28px;
+            padding-top: 20px;
+        }
+
+        .footer-text-container a {
+            color: #575B62;
+            font-weight: 600;
+        }
+
+        .welcome {
+            flex-grow: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .welcome-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .welcome-content-text-box {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        .purchase-container {
+            position: absolute;
+            top: 202px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .purchase-disclaimer {
+            margin: 5px 0;
+            text-align: center;
+            font-size: .75rem;
+            display: block;
+            opacity: .5;
+            color: #575B62 !important;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+
+        .action-item {
+            text-align: center;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .legal,
+        .privacy-button,
+        .restore-button,
+        .terms-button {
+            color: #575B62;
+        }
+
+        .privacy-button,
+        .restore-button,
+        .terms-button {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .legal-container {
+            max-width: 600px;
+        }
+
+        .legal-container .legal {
+            margin: 0;
+        }
+
+        .purchase-notice {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .placeholder-text-body {
+            font-size: 12px;
+            text-align: center;
+            color: #C7C7C7;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            /* display: none; */
+        }
+
+        #placeholder-text-body-skip {
+            display: none;
+        }
+
+        .purchase-notice>* {
+            font-weight: 600;
+        }
+
+        .purchase-notice strong {
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .purchase-notice p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-container ul {
+            list-style: none;
+            margin: 0;
+            padding-top: 14px;
+        }
+
+        .features-container li {
+            color: #C7C7C7;
+            font-size: 12px;
+        }
+
+        .list-flex-box {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .purchase-button-text {
+            margin: 0;
+            padding: 0;
+        }
+
+        .welcome-video-container {
+            margin: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .welcome-video-header {
+            width: 100%;
+            height: 100vw;
+            max-width: 600px;
+            /* max-height: 50vh; */
+            object-fit: cover;
+            object-position: bottom;
+        }
+
+        .actions-container {
+            margin: auto;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .unlock-inkhunter-container {
+            margin-top: 5px;
+            text-align: center;
+            color: black;
+        }
+
+        .unlock-inkhunter-container p {
+            margin: 0;
+            color: #959393;
+            font-size: 16px;
+        }
+
+        .unlock-inkhunter-container p.big {
+            font-size: 22px;
+            color: #595959;
+            font-weight: 700;
+        }
+
+        .unlock-inkhunter-container img.unlocked {
+            max-width: 20px;
+            margin-bottom: 5px;
+        }
+
+        main {
+            position: relative;
+            width: 100%;
+        }
+
+        @media only screen and (min-width: 767px) {
+            .height-50 {
+                max-height: 50vh;
+            }
+
+            .welcome-video-header {
+                max-height: 50vh;
+            }
+        }
+    </style>
+    <!-- <script type="application/w.params">%EXTRA_JSON%</script> -->
+    <script type="application/w.params">{"screen":"out-of-uses"}</script>
+
+    <script>
+        const supportsFormData = 'FormData' in window;
+        const supportsCustomEvent = 'CustomEvent' in window;
+
+        if (!supportsCustomEvent) {
+            window.CustomEvent = function (event, params) {
+                params = params || { bubbles: false, cancelable: false, detail: null };
+                var evt = document.createEvent('CustomEvent');
+                evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+                return evt;
+            };
+        }
+
+        function getJSON() {
+            try {
+                var scriptElement = document.head.querySelector("script[type='application/w.params']");
+                return scriptElement ? JSON.parse(scriptElement.textContent) : null;
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+                return null;
+            }
+        }
+
+        parcelRequire = function (e, r, t, n) {
+            var i,
+                o = "function" == typeof parcelRequire && parcelRequire,
+                u = "function" == typeof require && require;
+            function f(t, n) {
+                if (!r[t]) {
+                    if (!e[t]) {
+                        var i = "function" == typeof parcelRequire && parcelRequire;
+                        if (!n && i) return i(t, !0);
+                        if (o) return o(t, !0);
+                        if (u && "string" == typeof t) return u(t);
+                        var c = new Error("Cannot find module '" + t + "'");
+                        throw c.code = "MODULE_NOT_FOUND",
+                        c
+                    }
+                    p.resolve = function (r) {
+                        return e[t][1][r] || r
+                    },
+                        p.cache = {};
+                    var l = r[t] = new f.Module(t);
+                    e[t][0].call(l.exports, p, l, l.exports, this)
+                }
+                return r[t].exports;
+                function p(e) {
+                    return f(p.resolve(e))
+                }
+            }
+            f.isParcelRequire = !0,
+                f.Module = function (e) {
+                    this.id = e, this.bundle = f, this.exports = {}
+                }, f.modules = e, f.cache = r, f.parent = o, f.register = function (r, t) {
+                    e[r] = [function (e, r) { r.exports = t }, {}]
+                };
+            for (var c = 0; c < t.length; c++)
+                try { f(t[c]) }
+                catch (e) { i || (i = e) }
+            if (t.length) {
+                var l = f(t[t.length - 1]);
+                "object" == typeof exports
+                    && "undefined" != typeof module ? module.exports = l : "function" == typeof define
+                        && define.amd ? define(function () { return l }) : n
+                && (this[n] = l)
+            } if (parcelRequire = f, i)
+                throw i;
+            return f
+        }({
+            "v8Xc": [function (require, module, exports) {
+                "use strict";
+                function e(e) {
+                    eventCode = e
+                }
+                function t(e) {
+                    currentProduct = e, eventCode = 10
+                }
+                function n() {
+                    if (eventCode > 0) {
+                        var e = eventCode; return eventCode = 0, e
+                    }
+                }
+                function r() {
+                    return currentProduct
+                }
+                function o(e) {
+
+                }
+                function c() {
+                    document.getElementById("music") && document.getElementById("music").play();
+                    var e = new CustomEvent("startup"); window.dispatchEvent(e)
+                }
+                function i() {
+
+                }
+                function u() {
+                    if (window.analytics && window.analytics.eventQueue
+                        && 0 !== window.analytics.eventQueue.length) {
+                        var e = window.analytics.eventQueue.shift();
+                        return console.log("Logging event", e), JSON.stringify(e)
+                    }
+                }
+                function s() {
+                    try {
+                        var e = document.head.querySelector("script[type='application/w.params']").innerText;
+                        return JSON.parse(e)
+                    } catch (t) {
+                        return null
+                    }
+                }
+                Object.defineProperty(exports, "__esModule", { value: !0 }),
+                    exports.fireEvent = e,
+                    exports.purchaseProduct = t,
+                    exports.processClick = n,
+                    exports.getCurrentProduct = r,
+                    exports.cancelPurchase = o,
+                    exports.startUp = c,
+                    exports.shutdown = i,
+                    exports.processAnalytics = u,
+                    exports.parameters = void 0,
+                    window.eventCode = 0,
+                    window.currentProduct = "",
+                    window.fireEvent = e,
+                    window.purchaseProduct = t,
+                    window.processClick = n,
+                    window.getCurrentProduct = r,
+                    window.cancelPurchase = o,
+                    window.startUp = c,
+                    window.processAnalytics = u,
+                    window.shutdown = i;
+                var d = s();
+                exports.parameters = d;
+            }, {}],
+
+            "OftO": [function (require, module, exports) {
+                "use strict";
+                Object.defineProperty(exports, "__esModule", { value: !0 }),
+                    exports.track = t,
+                    exports.trackTime = c,
+                    exports.trackPurchase = a,
+                    exports.trackSkip = o,
+                    exports.trackOpenTerms = n,
+                    exports.trackOpenPrivacyPolicy = i,
+                    exports.trackRestore = r;
+                var e = require("./interop.js");
+                function t(t) {
+                    window.analytics = window.analytics || {},
+                        window.analytics.eventQueue = window.analytics.eventQueue || [],
+                        window.analytics.eventQueue.push(t),
+                        (0, e.fireEvent)(5)
+                }
+                function c(e) {
+                    t({ category: "WelcomeAnalytics", action: "time", label: (e + "").padStart(3, "0"), value: 0 })
+                }
+                function a(e) {
+                    t({ category: "WelcomeAnalytics", action: "purchase", label: e, value: 1 })
+                }
+                function o() {
+                    t({ category: "WelcomeAnalytics", action: "skip" })
+                }
+                function n() {
+                    t({ category: "WelcomeAnalytics", action: "open terms" })
+                }
+                function i() {
+                    t({ category: "WelcomeAnalytics", action: "open privacy policy" })
+                }
+                function r() {
+                    t({ category: "WelcomeAnalytics", action: "restore" })
+                }
+            }, { "./interop.js": "v8Xc" }],
+
+            "GB5Z": [function (require, module, exports) {
+                "use strict";
+                Object.defineProperty(exports, "__esModule",
+                    { value: !0 }),
+                    exports.purchase = o,
+                    exports.skip = c,
+                    exports.openTerms = i,
+                    exports.fireEventNine = z,
+                    exports.openPrivacyPolicy = u,
+                    exports.restore = p,
+                    exports.beginTrackTime = a;
+                var e = n(require("./interop")),
+                    r = n(require("./analytics"));
+                function t() {
+                    if ("function" != typeof WeakMap) return null;
+                    var e = new WeakMap;
+                    return t = function () {
+                        return e
+                    }, e
+                }
+                function n(e) {
+                    if (e && e.__esModule)
+                        return e;
+                    if (null === e || "object" != typeof e && "function" != typeof e)
+                        return { default: e }; var r = t();
+                    if (r && r.has(e))
+                        return r.get(e);
+                    var n = {},
+                        o = Object.defineProperty && Object.getOwnPropertyDescriptor;
+                    for (var c in e)
+                        if (Object.prototype.hasOwnProperty.call(e, c)) {
+                            var i = o ? Object.getOwnPropertyDescriptor(e, c) : null;
+                            i && (i.get || i.set) ? Object.defineProperty(n, c, i) : n[c] = e[c]
+                        } return n.default = e, r && r.set(e, n), n
+                }
+                function o(t) {
+                    console.log("Purchasing product", t),
+                        r.trackPurchase(t),
+                        e.purchaseProduct(t)
+                }
+                function c() {
+                    console.log("Skipping welcome screen"),
+                        r.trackSkip(),
+                        e.fireEvent(1)
+                }
+                function i() {
+                    r.trackOpenTerms(),
+                        e.fireEvent(2)
+                }
+                function u() {
+                    r.trackOpenPrivacyPolicy(), e.fireEvent(3)
+                }
+                function p() {
+                    r.trackRestore(), e.fireEvent(4)
+                }
+                function a() {
+                    var e = 0;
+                    return setInterval(function () { e++, r.trackTime(e) }, 1e3)
+                }
+                function z() {
+                    e.fireEvent(9)
+                }
+            }, { "./interop": "v8Xc", "./analytics": "OftO" }],
+
+            "VZX3": [function (require, module, exports) {
+                module.exports = {
+                    title: "Unlock Premium",
+                    subtitle: "",
+                    features: [
+                        "Unique content",
+                        "Access to exclusive spy network",
+                        "earn money by hacking in the game"
+                    ],
+                    trialButtonText: "Start Your 3-day Free Trial",
+                    immediateButtonText: "Start Subscription",
+                    defaultPurchase: 0,
+                    products: [{
+                        productId: "InkHunter.inkHunter.premium_week.premium_week",
+                        price: "%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%",
+                        duration: 1,
+                        period: "wk",
+                        trial: !1
+                    }, {
+                        productId: "InkHunter.inkHunter.premium_week.premium_week",
+                        price: "%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%",
+                        duration: 1,
+                        period: "wk",
+                        trial: !1
+                    }, {
+                        productId: "InkHunter.inkHunter.premium_week.premium_week",
+                        price: "%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%",
+                        duration: 1,
+                        period: "wk",
+                        trial: !1
+                    }]
+                };
+            }, {}],
+
+            "QvaY": [function (require, module, exports) {
+                "use strict";
+                var e = u(require("./ffi/actions.js")),
+                    t = require("./ffi/interop.js"),
+                    n = r(require("../data/app.json"));
+                function r(e) {
+                    return e && e.__esModule ? e : { default: e }
+                }
+                function o() {
+                    if ("function" != typeof WeakMap)
+                        return null;
+                    var e = new WeakMap;
+                    return o = function () {
+                        return e
+                    }, e
+                }
+                function u(e) {
+                    if (e && e.__esModule)
+                        return e;
+                    if (null === e || "object" != typeof e && "function" != typeof e)
+                        return { default: e };
+                    var t = o();
+                    if (t && t.has(e))
+                        return t.get(e);
+                    var n = {},
+                        r = Object.defineProperty && Object.getOwnPropertyDescriptor;
+                    for (var u in e)
+                        if (Object.prototype.hasOwnProperty.call(e, u)) {
+                            var c = r ? Object.getOwnPropertyDescriptor(e, u) : null;
+                            c && (c.get || c.set) ? Object.defineProperty(n, u, c) : n[u] = e[u]
+                        } return n.default = e, t && t.set(e, n), n
+                }
+                var c = n.default.defaultPurchase,
+                    i = [n.default.products],
+                    a = 0,
+                    d = i[a][c],
+                    f = function (e) {
+                        var t = document.getElementsByClassName(e);
+                        return Array.from(t)
+                    },
+                    l = function (e) {
+                        var t = document.getElementById("purchase-explanation"),
+                            r = document.getElementById("purchase-subtitle"),
+                            o = f("selected-product-price"),
+                            u = f("selected-product-period");
+                        t && e.trial ? t.innerText = "Then" : t
+                            && (t.innerText = "Only"), r
+                                && e.trial ? r.innerText = n.default.trialButtonText : r
+                            && (r.innerText = n.default.immediateButtonText),
+                            o.forEach(function (t) { return t.innerText = e.price }),
+                            u.forEach(function (t) { return t.innerText = e.period })
+                    }, p = function (t, n) {
+                        document.getElementById("purchase-button").onclick = function () {
+                            return e.purchase(t.productId)
+                        };
+                        try {
+                            document.getElementById("purchase-button-2").onclick = function () {
+                                return e.purchase(t.productId)
+                            }
+                        } catch (n) {
+                        }
+                    },
+                    s = function (e) {
+                        document.getElementById("option-1"),
+                            document.getElementById("option-2"),
+                            document.getElementById("option-3");
+                        p(d, selectedProduct2)
+                    },
+                    m = function () {
+                        var e = document.getElementById("purchase-form");
+                        if (e) {
+                            for (var t = new FormData(e),
+                                r = {},
+                                o = 0,
+                                u = Array.from(t);
+                                o < u.length; o++) {
+                                var c = u[o]; r[c[0]] = c[1]
+                            } r.trial; var i = Number(r.choice) - 1; d = n.default.products[i]
+                        }
+                    },
+                    y = function () {
+                        console.log("Rendering"),
+                            m(),
+                            l(d),
+                            p(d)
+                    };
+                window.addEventListener("startup", function () {
+                    document.body.setAttribute("lazy", "")
+                }),
+                    window.addEventListener("load", function () {
+                        var t = document.getElementById("close-button"),
+                            r = f("privacy-button"),
+                            o = f("restore-button"),
+                            u = f("terms-button"),
+                            v = f("fireEvent-9-button");
+
+                        f("option-radio").forEach(function (e) {
+                            return e.onclick = y
+                        }),
+                            r.forEach(function (t) {
+                                return t.onclick = e.openPrivacyPolicy
+                            }),
+                            o.forEach(function (t) {
+                                return t.onclick = e.restore
+                            }),
+                            u.forEach(function (t) {
+                                return t.onclick = e.openTerms
+                            }),
+                            v.forEach(function (t) {
+                                return t.onclick = e.fireEventNine
+                            }),
+                            t.onclick = function () {
+                                return e.skip()
+                            }, y()
+                    });
+            }, { "./ffi/actions.js": "GB5Z", "./ffi/interop.js": "v8Xc", "../data/app.json": "VZX3" }]
+        },
+            {}, ["QvaY"], null)
+
+        parcelRequire = function (e, r, t, n) {
+            var i, o = "function" == typeof parcelRequire && parcelRequire, u = "function" == typeof require && require;
+
+            function f(t, n) {
+                if (!r[t]) {
+                    if (!e[t]) {
+                        var i = "function" == typeof parcelRequire && parcelRequire;
+                        if (!n && i) return i(t, !0);
+                        if (o) return o(t, !0);
+                        if (u && "string" == typeof t) return u(t);
+                        var c = new Error("Cannot find module '" + t + "'");
+                        throw c.code = "MODULE_NOT_FOUND", c
+                    }
+                    p.resolve = function (r) {
+                        return e[t][1][r] || r
+                    }, p.cache = {};
+                    var l = r[t] = new f.Module(t);
+                    e[t][0].call(l.exports, p, l, l.exports, this)
+                }
+                return r[t].exports;
+
+                function p(e) {
+                    return f(p.resolve(e))
+                }
+            }
+
+            f.isParcelRequire = !0, f.Module = function (e) {
+                this.id = e, this.bundle = f, this.exports = {}
+            }, f.modules = e, f.cache = r, f.parent = o, f.register = function (r, t) {
+                e[r] = [function (e, r) {
+                    r.exports = t
+                }, {}]
+            };
+            for (var c = 0; c < t.length; c++) try {
+                f(t[c])
+            } catch (e) {
+                i || (i = e)
+            }
+            if (t.length) {
+                var l = f(t[t.length - 1]);
+                "object" == typeof exports && "undefined" != typeof module ? module.exports = l : "function" == typeof define && define.amd ? define(function () {
+                    return l
+                }) : n && (this[n] = l)
+            }
+            if (parcelRequire = f, i) throw i;
+            return f
+        }({
+            "e8b8": [function (require, module, exports) {
+                window.addEventListener("load", function () {
+                    var e = window.screen, t = e.width / e.height;
+                    document.getElementById("video-container").style.backgroundImage = t < .55 ? 'url("https://play-lh.googleusercontent.com/62s76e_nY_HnSd0SR9QO_CIGCT9pUqAN-l1-eUwgGp3vtvM3td1m1470mbOWJIfVDI0")' : 'url("https://play-lh.googleusercontent.com/62s76e_nY_HnSd0SR9QO_CIGCT9pUqAN-l1-eUwgGp3vtvM3td1m1470mbOWJIfVDI0")'
+                }),
+                    window.addEventListener("startup", function () {
+                        startupInitiated = true;
+                    });
+            }, {}]
+        }, {}, ["e8b8"], null)
+
+        function startTimer(duration, pageId) {
+            var timer = duration, minutes, seconds;
+            var interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                var timerElement = document.querySelector('#' + pageId + ' .offer-counter-box span');
+                if (timerElement) {
+                    timerElement.textContent = minutes + ":" + seconds;
+                }
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+
+        let startupInitiated = false;
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'flex';
+
+            if (pageId === 'page-3' && startupInitiated) {
+                startVideoAndTimer();
+            }
+        }
+
+        function startVideoAndTimer() {
+            var e = window.screen, t = e.width / e.height, l = document.getElementById("video");
+            let opts = window.getJSON() || {};
+            let opt = opts.screen;
+            renderType(opt);
+            console.log(t);
+            l.src = t < .55 ? "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4" : "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4";
+            l.play();
+        }
+
+        function renderCountdown(seconds) {
+            let intervalId;
+
+            function updateCountdown() {
+                let targetlist = document.getElementById("features-list");
+                let target = document.getElementById("unlock-container");
+                let targetskip = document.getElementById("placeholder-text-body-skip");
+                let targetdefault = document.getElementById("placeholder-text-body-default");
+                let targetnotice = document.getElementById("purchase-notice-box");
+                let purchaseBox = document.getElementById("purchase-disclaimer-box");
+                let legalPurchaseBox = document.getElementById("legal-container-box");
+
+
+
+                if (seconds > 0) {
+                    let minutes = Math.floor(seconds / 60);
+                    let remainingSeconds = seconds % 60;
+                    let timeString = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+
+                    targetnotice.style.top = "116px";
+
+                    target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
+                    target.style.display = "block";
+                    targetskip.style.display = "block";
+                    targetdefault.style.display = "none";
+
+                    seconds--;
+                } else {
+                    clearInterval(intervalId);
+
+                    targetnotice.style.top = "207px";
+
+                    target.style.display = "none";
+                    targetskip.style.display = "none";
+                    targetdefault.style.display = "block";
+
+                }
+            }
+
+            updateCountdown();
+            intervalId = setInterval(updateCountdown, 1000);
+        }
+
+        function renderType(type) {
+            if (type === "out-of-uses" && document.getElementById('page-3').style.display === 'flex') {
+                let time = (getJSON() || {}).timeout || 5;
+                renderCountdown(time);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const radios = document.querySelectorAll('.subscription-options input[type="radio"]');
+
+            var optionTitle = 'Lifetime';
+            var price = 0;
+            var optionBadge = 90;
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    radios.forEach(r => {
+                        r.closest('.subscription-options').classList.remove('checked');
+                    });
+                    if (this.checked) {
+                        this.closest('.subscription-options').classList.add('checked');
+                    }
+                });
+            });
+
+            var closeModalButton = document.getElementById('close-button');
+            var closeModalButton2 = document.getElementById('purchase-button-3');
+            var openModalButton = document.getElementById('final-modal-button');
+            var modal = document.getElementById('final-modal-container');
+
+            if (openModalButton && closeModalButton && closeModalButton2 && modal) {
+                closeModalButton.addEventListener('click', function () {
+                    modal.classList.add('modal-slide-down');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.classList.remove('modal-slide-down');
+                    }, 500);
+                });
+
+                closeModalButton2.addEventListener('click', function () {
+                    modal.classList.add('modal-slide-down');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.classList.remove('modal-slide-down');
+                    }, 500);
+                });
+
+                openModalButton.addEventListener('click', function () {
+                    modal.style.display = 'flex';
+                    modal.style.transform = 'translateY(100%)';
+                    setTimeout(() => {
+                        modal.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+            } else {
+                console.log('One or more elements are not found.');
+            }
+
+            document.querySelectorAll('.next-button, .fireEvent-9-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const currentPage = this.closest('.page');
+                    const nextPage = currentPage.nextElementSibling;
+                    if (nextPage) {
+                        showPage(nextPage.id);
+                    }
+                }, { passive: true });
+            });
+
+            document.getElementById('video').addEventListener('canplay', function () {
+                this.muted = true;
+                this.play().catch(error => console.log('Autoplay prevented:', error));
+            });
+
+            function handleVideoPlayback() {
+                const video = document.getElementById('video');
+                if (video.paused) {
+                    video.play().catch(error => console.log('Playback prevented:', error));
+                }
+            }
+
+            document.addEventListener('click', handleVideoPlayback, { once: true });
+
+            document.querySelectorAll('.preview-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const currentPage = this.closest('.page');
+                    const previewPage = currentPage.previousElementSibling;
+                    if (previewPage) {
+                        showPage(previewPage.id);
+                    }
+                });
+            });
+
+            showPage('page-1');
+        });
+    </script>
+</head>
+
+<body>
+    <div id="page-1" class="content-container page">
+        <div class="page-1-container">
+            <img class="welcome-bg" loading="lazy"
+                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/img/Girl.png" alt="background">
+            <div class="height-50"></div>
+            <div class="welcome-content-container">
+                <div class="welcome-content-box">
+                    <p class="welcome-title big-text">
+                        Welcome to Inkhunter
+                    </p>
+                    <p class="welcome-description small-text">
+                        Make your dream tattoo <br> with the power of <span class="color-text">AI</span>
+                    </p>
+                    <div class="bottom-content-box">
+                        <button class="main-button next-button">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="page-2" class="content-container page">
+        <div class="page-2-container">
+            <img class="welcome-bg" loading="lazy"
+                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/img/Flower_bg.png" alt="background">
+            <div class="height-50">
+                <div class="welcome-content-container">
+                    <div class="welcome-content-box">
+                        <div class="middle-content-box">
+                            <p class="welcome-title big-text">
+                                Help us grow
+                            </p>
+                            <p class="content-description">
+                                Show your love <br> by giving us a review on the App Store
+                            </p>
+                            <svg width="852" height="128" viewBox="0 0 852 128" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M67.5589 0.82959L90.3881 39.7525L134.72 49.2856L104.497 82.8744L109.067 127.689L67.5589 109.525L26.0511 127.689L30.6204 82.8744L0.397949 49.2856L44.7296 39.7525L67.5589 0.82959Z"
+                                    fill="#FAD617" />
+                                <path
+                                    d="M246.655 0.82959L269.484 39.7525L313.816 49.2856L283.593 82.8744L288.163 127.689L246.655 109.525L205.147 127.689L209.716 82.8744L179.494 49.2856L223.826 39.7525L246.655 0.82959Z"
+                                    fill="#FAD617" />
+                                <path
+                                    d="M425.751 0.82959L448.58 39.7525L492.911 49.2856L462.689 82.8744L467.258 127.689L425.751 109.525L384.243 127.689L388.812 82.8744L358.59 49.2856L402.921 39.7525L425.751 0.82959Z"
+                                    fill="#FAD617" />
+                                <path
+                                    d="M604.846 0.82959L627.675 39.7525L672.007 49.2856L641.785 82.8744L646.354 127.689L604.846 109.525L563.338 127.689L567.908 82.8744L537.685 49.2856L582.017 39.7525L604.846 0.82959Z"
+                                    fill="#FAD617" />
+                                <path
+                                    d="M783.942 0.82959L806.771 39.7525L851.103 49.2856L820.881 82.8744L825.45 127.689L783.942 109.525L742.434 127.689L747.004 82.8744L716.781 49.2856L761.113 39.7525L783.942 0.82959Z"
+                                    fill="#FAD617" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page2-button-container">
+                <div class="bottom-content-box">
+                    <button class="main-button fireEvent-9-button">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="page-3" class="content-container page">
+        <div class="close-container animation-close-button"><span class="next-button page-3-next">&times;</span></div>
+        <main class="welcome-container">
+            <div class="close-container"><span id="close-button">&times;</span></div>
+            <div class="welcome">
+                <div class="welcome-video-container" id="video-container">
+                    <video id="video" class="welcome-video-header" playsinline preload="metadata"></video>
+                </div>
+                <div class="welcome-content">
+                    <div class="welcome-content-text-box">
+                        <h1 class="welcome-title">Find Your Next Tattoo</h1>
+                        <div class="features-container">
+                            <ul id="features-list">
+                                <li class="list-flex-box">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
+                                            viewBox="0 0 14 11" fill="none">
+                                            <path
+                                                d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
+                                                stroke="#4F7976" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Choose Your Art</span>
+                                </li>
+                                <li class="list-flex-box">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
+                                            viewBox="0 0 14 11" fill="none">
+                                            <path
+                                                d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
+                                                stroke="#4F7976" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Try Design in AR</span>
+                                </li>
+                                <li class="list-flex-box">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
+                                            viewBox="0 0 14 11" fill="none">
+                                            <path
+                                                d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
+                                                stroke="#4F7976" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Customize Your Tattoo</span>
+                                </li>
+                                <li class="list-flex-box">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
+                                            viewBox="0 0 14 11" fill="none">
+                                            <path
+                                                d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
+                                                stroke="#4F7976" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Share That Dope Design</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="purchase-container" id="purchase-notice-box">
+                        <div class="purchase-notice">
+                            <div id="unlock-container" class="unlock-inkhunter-container text-center">
+                            </div>
+                            <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
+                                <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
+                                <!-- <span class="selected-product-price"></span><span>/</span><span
+                                    class="selected-product-period"></span> -->
+                                <span> Upgrade for 3 day free trial then</span>&nbsp;
+                                <span class="">$6.99</span><span>/</span><span class="">wk</span>
+                            </h2>
+                            <div class="bottom-content-box">
+                                <button id="purchase-button" class="main-button pulse">
+                                    <p class="purchase-button-text purchase-button-price">Continue</p>
+                                </button>
+                            </div>
+                            <h2 class="placeholder-text-body" id="placeholder-text-body-default">
+                                <!-- <span>only </span><span class="selected-product-price"></span><span>/</span><span
+                                    class="selected-product-period"></span> -->
+                                <span>only</span>&nbsp;<span class="">$6.99</span><span>/</span><span class="">wk</span>
+                            </h2>
+                        </div>
+                        <footer class="legal-container" id="legal-container-box">
+                            <nav class="actions-container">
+                                <span class="purchase-disclaimer" id="purchase-disclaimer-box"> Subscription renews
+                                    automatically</span>
+                                <ul class="actions">
+                                    <li class="action-item"><span class="privacy-button">Privacy Policy</span></li>
+                                    <li class="action-item"><span class="restore-button">Restore Purchase</span></li>
+                                    <li class="action-item"><span class="terms-button">Terms of Service</span></li>
+                                </ul>
+                            </nav>
+                            <p class="legal"> In accordance with the iTunes Store Terms of Use which we
+                                recommend you review before proceeding with any online transaction, this subscription
+                                automatically
+                                renews.
+                                You can cancel anytime. By signing up for a subscription, you agree to the <span
+                                    class="terms-button">Terms of Service</span>
+                                and <span class="privacy-button">Privacy Policy</span></p>
+                            <div class="footer-text-container">
+                                <a href="#">Restore Purchase</a>
+                                <div>
+                                    <svg width="2" height="3" viewBox="0 0 2 3" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect y="0.5" width="2" height="2" rx="1" fill="#575B62" />
+                                    </svg>
+                                </div>
+                                <a href="#">Subscription information</a>
+                            </div>
+                        </footer>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+</body>
+
+</html>
