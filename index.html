@@ -92,7 +92,7 @@
 
         .page-1-container .welcome-content-box {
             position: absolute;
-            top: 111px;
+            top: 85px;
             width: 100%;
         }
 
@@ -118,7 +118,7 @@
 
         .page2-button-container .bottom-content-box {
             position: absolute;
-            top: 227px;
+            top: 201px;
         }
 
         #page-3 .welcome-content-container {
@@ -131,7 +131,7 @@
         }
 
         #page-3 .welcome-content {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .welcome-title {
@@ -292,7 +292,7 @@
 
         .purchase-container {
             position: absolute;
-            top: 175px;
+            top: 158px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -384,7 +384,7 @@
         .features-container ul {
             list-style: none;
             margin: 0;
-            padding-top: 14px;
+            padding-top: 10px;
         }
 
         .features-container li {
@@ -973,7 +973,7 @@
                     let remainingSeconds = seconds % 60;
                     let timeString = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 
-                    targetnotice.style.top = "114px";
+                    targetnotice.style.top = "97px";
 
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
                     target.style.display = "block";
@@ -984,7 +984,7 @@
                 } else {
                     clearInterval(intervalId);
 
-                    targetnotice.style.top = "180px";
+                    targetnotice.style.top = "163px";
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
