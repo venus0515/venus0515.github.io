@@ -461,6 +461,82 @@
                 max-height: 50vh;
             }
         }
+
+        @media only screen and (max-height: 800px) and (min-height: 700px) {
+            .page-1-container .welcome-content-box {
+                top: 132px;
+            }
+
+            .page2-button-container .bottom-content-box {
+                top: 253px;
+            }
+
+            .purchase-container {
+                top: 198px;
+            }
+
+            #page-3 .welcome-content {
+                margin-top: 20px;
+            }
+
+            .welcome-title {
+                font-size: 28px;
+            }
+
+            .features-container ul {
+                padding-top: 20px;
+            }
+
+            .placeholder-text-body {
+                font-size: 14px;
+            }
+
+            .features-container li {
+                font-size: 16px;
+            }
+
+            .purchase-disclaimer {
+                font-size: 14px;
+            }
+        }
+
+        @media only screen and (min-height: 801px) {
+            .page-1-container .welcome-content-box {
+                top: 232px;
+            }
+
+            .page2-button-container .bottom-content-box {
+                top: 353px;
+            }
+
+            .purchase-container {
+                top: 298px;
+            }
+
+            #page-3 .welcome-content {
+                margin-top: 20px;
+            }
+
+            .welcome-title {
+                font-size: 28px;
+            }
+
+            .features-container ul {
+                padding-top: 20px;
+            }
+
+            .placeholder-text-body {
+                font-size: 14px;
+            }
+
+            .features-container li {
+                font-size: 16px;
+            }
+
+            .purchase-disclaimer {
+                font-size: 14px;
+            }
+        }
     </style>
     <!-- <script type="application/w.params">%EXTRA_JSON%</script> -->
     <script type="application/w.params">{"screen":"out-of-uses"}</script>
@@ -973,7 +1049,14 @@
                     let remainingSeconds = seconds % 60;
                     let timeString = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 
-                    targetnotice.style.top = "97px";
+                    console.log(window.innerHeight);
+                    if (window.innerHeight >= 801) {
+                        targetnotice.style.top = "237px";
+                    } else if (window.innerHeight >= 700 && window.innerHeight < 800) {
+                        targetnotice.style.top = "137px";
+                    } else {
+                        targetnotice.style.top = "97px";
+                    }
 
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
                     target.style.display = "block";
@@ -984,7 +1067,14 @@
                 } else {
                     clearInterval(intervalId);
 
-                    targetnotice.style.top = "163px";
+                    if (window.innerHeight >= 801) {
+                        targetnotice.style.top = "303px";
+                    } else if (window.innerHeight >= 700 && window.innerHeight < 800) {
+                        targetnotice.style.top = "203px";
+                    } else {
+                        targetnotice.style.top = "163px";
+                    }
+
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
@@ -999,7 +1089,7 @@
 
         function renderType(type) {
             if (type === "out-of-uses" && document.getElementById('page-3').style.display === 'flex') {
-                let time = (getJSON() || {}).timeout || 5;
+                let time = (getJSON() || {}).timeout || 100;
                 renderCountdown(time);
             }
         }
