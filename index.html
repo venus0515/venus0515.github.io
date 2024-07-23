@@ -292,7 +292,7 @@
 
         .purchase-container {
             position: absolute;
-            top: 202px;
+            top: 175px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -973,7 +973,7 @@
                     let remainingSeconds = seconds % 60;
                     let timeString = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 
-                    targetnotice.style.top = "116px";
+                    targetnotice.style.top = "114px";
 
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
                     target.style.display = "block";
@@ -984,7 +984,7 @@
                 } else {
                     clearInterval(intervalId);
 
-                    targetnotice.style.top = "207px";
+                    targetnotice.style.top = "180px";
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
@@ -1232,16 +1232,16 @@
                                 <span> Upgrade for 3 day free trial then</span>&nbsp;
                                 <span class="">$6.99</span><span>/</span><span class="">wk</span>
                             </h2>
-                            <div class="bottom-content-box">
-                                <button id="purchase-button" class="main-button pulse">
-                                    <p class="purchase-button-text purchase-button-price">Continue</p>
-                                </button>
-                            </div>
                             <h2 class="placeholder-text-body" id="placeholder-text-body-default">
                                 <!-- <span>only </span><span class="selected-product-price"></span><span>/</span><span
                                     class="selected-product-period"></span> -->
                                 <span>only</span>&nbsp;<span class="">$6.99</span><span>/</span><span class="">wk</span>
                             </h2>
+                            <div class="bottom-content-box">
+                                <button id="purchase-button" class="main-button pulse">
+                                    <p class="purchase-button-text purchase-button-price">Continue</p>
+                                </button>
+                            </div>
                         </div>
                         <footer class="legal-container" id="legal-container-box">
                             <nav class="actions-container">
