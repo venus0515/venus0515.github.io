@@ -570,10 +570,8 @@
 
         }
     </style>
-    <script type="application/w.params">%EXTRA_JSON%</script>
-    <!-- <script type="application/w.params">{"screen":"out-of-uses"}</script>
-    <script type="application/w.params">{"screen":"out-of-uses", "unonboarding":"1"}</script>
-    <script type="application/w.params">{"screen":"out-of-uses", "unonboarding":"0"}</script> -->
+    <!-- <script type="application/w.params">%EXTRA_JSON%</script> -->
+    <script type="application/w.params">{"screen":"out-of-uses"}</script>
 
     <script>
         const supportsFormData = 'FormData' in window;
@@ -1020,11 +1018,8 @@
 
                         let params = window.getJSON() || {};
 
-                        if (params.unonboarding === "1" && params.screen === "out-of-uses") {
+                        if (params.screen === "out-of-uses") {
                             showPage('page-3');
-                            // startVideoAndTimer();
-                        } else if (params.unonboarding === "0" && params.screen === "out-of-uses") {
-                            showPage('page-1');
                         } else {
                             showPage('page-1');
                         }
@@ -1113,8 +1108,8 @@
                     let minutes = Math.floor(seconds / 60);
                     let remainingSeconds = seconds % 60;
                     let timeString = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
+
                     target.style.display = "block";
                     targetskip.style.display = "block";
                     targetdefault.style.display = "none";
@@ -1367,13 +1362,17 @@
                                 <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
                                 <!-- <span class="selected-product-price"></span><span>/</span><span
                                     class="selected-product-period"></span> -->
-                                <span> Upgrade for 3 day free trial then</span>&nbsp;
-                                <span class="">$6.99</span><span>/</span><span class="">wk</span>
+                                <span> Upgrade to try for only</span>&nbsp;
+                                <span
+                                    class="">%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%</span><span>/</span><span
+                                    class="">wk</span>
                             </h2>
                             <h2 class="placeholder-text-body" id="placeholder-text-body-default">
                                 <!-- <span>only </span><span class="selected-product-price"></span><span>/</span><span
                                     class="selected-product-period"></span> -->
-                                <span>only</span>&nbsp;<span class="">$6.99</span><span>/</span><span class="">wk</span>
+                                <span>only</span>&nbsp;<span
+                                    class="">%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%</span><span>/</span><span
+                                    class="">wk</span>
                             </h2>
                             <div class="bottom-content-box">
                                 <button id="purchase-button" class="main-button pulse">
