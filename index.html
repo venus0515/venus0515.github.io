@@ -56,8 +56,11 @@
             left: 20px;
         }
 
-        .preview-button,
-        #page-3 .page-3-next {
+        #close-button {
+            font-size: 30px;
+        }
+
+        .preview-button {
             cursor: pointer;
             user-select: none;
             font-size: 30px;
@@ -79,14 +82,9 @@
             width: 100%;
         }
 
-        .height-50 {
-            width: 100%;
-            height: 100vw;
-            max-width: 600px;
-        }
-
         .welcome-content-container {
-            position: relative;
+            position: absolute;
+            bottom: 70px;
             width: 100%;
         }
 
@@ -99,26 +97,20 @@
         .page-2-container .welcome-content-container {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             height: 100%;
         }
 
         .page2-button-container {
-            position: relative;
+            position: absolute;
+            bottom: 70px;
             width: 100%;
             display: flex;
             justify-content: center;
         }
 
         .page-1-container .welcome-content-box {
-            position: absolute;
-            top: 83px;
             width: 100%;
-        }
-
-        .page2-button-container .bottom-content-box {
-            position: absolute;
-            top: 193px;
         }
 
         #page-3 .welcome-content-container {
@@ -131,11 +123,11 @@
         }
 
         #page-3 .welcome-content {
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .welcome-title {
-            font-size: 24px;
+            font-size: 20px;
             color: #ffffff;
             font-weight: 700;
             margin: 0;
@@ -290,9 +282,15 @@
             margin: 0 auto;
         }
 
+        .purchase-bottom-wrapper {
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+        }
+
         .purchase-container {
             position: absolute;
-            top: 158px;
+            bottom: 0;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -339,7 +337,7 @@
         }
 
         .legal-container {
-            max-width: 600px;
+            position: absolute;
         }
 
         .legal-container .legal {
@@ -355,7 +353,7 @@
         }
 
         .placeholder-text-body {
-            font-size: 12px;
+            font-size: 10px;
             text-align: center;
             color: #C7C7C7;
             margin-bottom: 5px;
@@ -384,12 +382,12 @@
         .features-container ul {
             list-style: none;
             margin: 0;
-            padding-top: 10px;
+            padding-left: 30px;
         }
 
         .features-container li {
             color: #C7C7C7;
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .list-flex-box {
@@ -404,7 +402,7 @@
         }
 
         .welcome-video-container {
-            margin: 0;
+            margin: 0 auto;
             background-size: cover;
             background-position: center;
         }
@@ -412,7 +410,7 @@
         .welcome-video-header {
             width: 100%;
             height: 100vw;
-            max-width: 600px;
+            /*            max-width: 600px;*/
             /* max-height: 50vh; */
             object-fit: cover;
             object-position: bottom;
@@ -433,11 +431,11 @@
         .unlock-inkhunter-container p {
             margin: 0;
             color: #959393;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .unlock-inkhunter-container p.big {
-            font-size: 22px;
+            font-size: 18px;
             color: #595959;
             font-weight: 700;
         }
@@ -453,100 +451,34 @@
         }
 
         @media only screen and (min-width: 767px) {
-            .height-50 {
-                max-height: 50vh;
-            }
-
             .welcome-video-header {
                 max-height: 50vh;
             }
-        }
-
-        @media only screen and (max-height: 699px) {
-            .main-button {
-                height: 40px;
-                font-size: 16px;
-            }
 
             .welcome-title {
-                font-size: 20px;
+                font-size: 24px;
+            }
+        }
+
+        @media only screen and (max-height: 800px) and (min-height: 700px) {
+            .welcome-title {
+                font-size: 28px;
             }
 
-            .features-container ul {
-                padding-left: 20px;
+            .placeholder-text-body {
+                font-size: 14px;
             }
 
-            .page2-button-container .bottom-content-box {
-                top: 198px;
-            }
-
-            .purchase-disclaimer {
-                margin-bottom: 0;
-            }
-
-            .action-item {
+            .features-container li {
                 font-size: 12px;
             }
 
-            .page-1-container .welcome-content-box {
-                top: 87px;
-            }
-        }
-
-        /* iPhon 15 */
-        @media only screen and (max-height: 800px) and (min-height: 700px) {
-            .page-1-container .welcome-content-box {
-                top: 130px;
-            }
-
-            .page2-button-container .bottom-content-box {
-                top: 251px;
-            }
-
-            .purchase-container {
-                top: 198px;
-            }
-
-            #page-3 .welcome-content {
-                margin-top: 20px;
-            }
-
-            .welcome-title {
-                font-size: 28px;
-            }
-
-            .features-container ul {
-                padding-top: 20px;
-            }
-
-            .placeholder-text-body {
-                font-size: 14px;
-            }
-
-            .features-container li {
-                font-size: 16px;
-            }
-
             .purchase-disclaimer {
                 font-size: 14px;
-                margin: 10px 0;
             }
         }
 
-        /* iPhone 11 && iPhone 12 && iPhone 13 */
         @media only screen and (min-height: 801px) {
-            .page-1-container .welcome-content-box {
-                top: 160px;
-            }
-
-            .page2-button-container .bottom-content-box {
-                top: 281px;
-            }
-
-            .purchase-container {
-                top: 228px;
-            }
-
             #page-3 .welcome-content {
                 margin-top: 20px;
             }
@@ -569,31 +501,22 @@
 
             .purchase-disclaimer {
                 font-size: 14px;
-                margin: 10px 0;
             }
 
-            .actions-container {
-                margin-bottom: 20px;
+            .unlock-inkhunter-container p {
+                font-size: 20px;
+            }
+
+            .unlock-inkhunter-container p.big {
+                font-size: 26px;
+                color: #595959;
+                font-weight: 700;
             }
         }
 
-        /* iPad 768*1024 */
         @media only screen and (min-height: 1000px) {
-            .page-1-container .welcome-content-box {
-                top: 211px;
-            }
-
-            .page2-button-container .bottom-content-box {
-                top: 335px;
-            }
-
-            .purchase-container {
-                top: 293px;
-            }
-
             .purchase-disclaimer {
                 font-size: 16px;
-                margin: 20px 0;
             }
 
             .action-item {
@@ -625,33 +548,9 @@
                 color: #595959;
                 font-weight: 700;
             }
-
-            .preview-button,
-            #page-3 .page-3-next {
-                cursor: pointer;
-                user-select: none;
-                font-size: 40px;
-            }
-
-            .purchase-disclaimer {
-                margin-bottom: 10px;
-            }
-
         }
 
         @media only screen and (min-height: 1025px) {
-            .page-1-container .welcome-content-box {
-                top: 248px;
-            }
-
-            .page2-button-container .bottom-content-box {
-                top: 383px;
-            }
-
-            .purchase-container {
-                top: 308px;
-            }
-
             .list-flex-box div {
                 margin-right: 10px;
             }
@@ -675,28 +574,6 @@
                 font-weight: 700;
             }
 
-            .purchase-disclaimer {
-                margin-bottom: 10px;
-            }
-
-        }
-
-        @media only screen and (min-height: 1330px) {
-            .page-1-container .welcome-content-box {
-                top: 468px;
-            }
-
-            .page2-button-container .bottom-content-box {
-                top: 603px;
-            }
-
-            .purchase-container {
-                top: 528px;
-            }
-
-            .purchase-disclaimer {
-                margin-bottom: 10px;
-            }
         }
     </style>
     <!-- <script type="application/w.params">%EXTRA_JSON%</script> -->
@@ -1140,7 +1017,7 @@
             "e8b8": [function (require, module, exports) {
                 window.addEventListener("load", function () {
                     var e = window.screen, t = e.width / e.height;
-                    document.getElementById("video-container").style.backgroundImage = t < .55 ? 'url("https://play-lh.googleusercontent.com/62s76e_nY_HnSd0SR9QO_CIGCT9pUqAN-l1-eUwgGp3vtvM3td1m1470mbOWJIfVDI0")' : 'url("https://play-lh.googleusercontent.com/62s76e_nY_HnSd0SR9QO_CIGCT9pUqAN-l1-eUwgGp3vtvM3td1m1470mbOWJIfVDI0")'
+                    document.getElementById("video-container").style.backgroundImage = t < .55 ? 'url("https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/logo.jpg")' : 'url("https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/logo.jpg")'
                 }),
                     window.addEventListener("startup", function () {
                         startupInitiated = true;
@@ -1187,6 +1064,7 @@
             let opt = opts.screen;
             renderType(opt);
             console.log(t);
+            // l.src = t < .55 ? "/BUNDLE:Inkhunter_promo_square_10.mp4" : "/BUNDLE:Inkhunter_promo_square_10.mp4";
             l.src = t < .55 ? "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4" : "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4";
             l.play();
         }
@@ -1203,27 +1081,10 @@
                 let purchaseBox = document.getElementById("purchase-disclaimer-box");
                 let legalPurchaseBox = document.getElementById("legal-container-box");
 
-
-
                 if (seconds > 0) {
                     let minutes = Math.floor(seconds / 60);
                     let remainingSeconds = seconds % 60;
                     let timeString = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-
-                    console.log(window.innerHeight);
-                    if (window.innerHeight >= 1330) {
-                        targetnotice.style.top = "439px";
-                    } else if (window.innerHeight >= 1025) {
-                        targetnotice.style.top = "219px";
-                    } else if (window.innerHeight >= 1000) {
-                        targetnotice.style.top = "211px";
-                    } else if (window.innerHeight >= 801) {
-                        targetnotice.style.top = "165px";
-                    } else if (window.innerHeight >= 700 && window.innerHeight < 800) {
-                        targetnotice.style.top = "137px";
-                    } else {
-                        targetnotice.style.top = "97px";
-                    }
 
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
                     target.style.display = "block";
@@ -1233,21 +1094,6 @@
                     seconds--;
                 } else {
                     clearInterval(intervalId);
-
-                    if (window.innerHeight >= 1330) {
-                        targetnotice.style.top = "538px";
-                    } else if (window.innerHeight >= 1025) {
-                        targetnotice.style.top = "318px";
-                    } else if (window.innerHeight >= 1000) {
-                        targetnotice.style.top = "298px";
-                    } else if (window.innerHeight >= 801) {
-                        targetnotice.style.top = "233px";
-                    } else if (window.innerHeight >= 700 && window.innerHeight < 800) {
-                        targetnotice.style.top = "203px";
-                    } else {
-                        targetnotice.style.top = "163px";
-                    }
-
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
@@ -1262,7 +1108,7 @@
 
         function renderType(type) {
             if (type === "out-of-uses" && document.getElementById('page-3').style.display === 'flex') {
-                let time = (getJSON() || {}).timeout || 5;
+                let time = (getJSON() || {}).timeout || 30;
                 renderCountdown(time);
             }
         }
@@ -1362,8 +1208,7 @@
     <div id="page-1" class="content-container page">
         <div class="page-1-container">
             <img class="welcome-bg" loading="lazy"
-                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/img/Girl.png" alt="background">
-            <div class="height-50"></div>
+                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/Girl.jpg" alt="background">
             <div class="welcome-content-container">
                 <div class="welcome-content-box">
                     <p class="welcome-title big-text">
@@ -1383,36 +1228,34 @@
     <div id="page-2" class="content-container page">
         <div class="page-2-container">
             <img class="welcome-bg" loading="lazy"
-                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/img/Flower_bg.png" alt="background">
-            <div class="height-50">
-                <div class="welcome-content-container">
-                    <div class="welcome-content-box">
-                        <div class="middle-content-box">
-                            <p class="welcome-title big-text">
-                                Help us grow
-                            </p>
-                            <p class="content-description">
-                                Show your love <br> by giving us a review on the App Store
-                            </p>
-                            <svg width="852" height="128" viewBox="0 0 852 128" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M67.5589 0.82959L90.3881 39.7525L134.72 49.2856L104.497 82.8744L109.067 127.689L67.5589 109.525L26.0511 127.689L30.6204 82.8744L0.397949 49.2856L44.7296 39.7525L67.5589 0.82959Z"
-                                    fill="#FAD617" />
-                                <path
-                                    d="M246.655 0.82959L269.484 39.7525L313.816 49.2856L283.593 82.8744L288.163 127.689L246.655 109.525L205.147 127.689L209.716 82.8744L179.494 49.2856L223.826 39.7525L246.655 0.82959Z"
-                                    fill="#FAD617" />
-                                <path
-                                    d="M425.751 0.82959L448.58 39.7525L492.911 49.2856L462.689 82.8744L467.258 127.689L425.751 109.525L384.243 127.689L388.812 82.8744L358.59 49.2856L402.921 39.7525L425.751 0.82959Z"
-                                    fill="#FAD617" />
-                                <path
-                                    d="M604.846 0.82959L627.675 39.7525L672.007 49.2856L641.785 82.8744L646.354 127.689L604.846 109.525L563.338 127.689L567.908 82.8744L537.685 49.2856L582.017 39.7525L604.846 0.82959Z"
-                                    fill="#FAD617" />
-                                <path
-                                    d="M783.942 0.82959L806.771 39.7525L851.103 49.2856L820.881 82.8744L825.45 127.689L783.942 109.525L742.434 127.689L747.004 82.8744L716.781 49.2856L761.113 39.7525L783.942 0.82959Z"
-                                    fill="#FAD617" />
-                            </svg>
-                        </div>
+                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/Flower_bg.jpg" alt="background">
+            <div class="welcome-content-container">
+                <div class="welcome-content-box">
+                    <div class="middle-content-box">
+                        <p class="welcome-title big-text">
+                            Help us grow
+                        </p>
+                        <p class="content-description">
+                            Show your love <br> by giving us a review on the App Store
+                        </p>
+                        <svg width="852" height="128" viewBox="0 0 852 128" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M67.5589 0.82959L90.3881 39.7525L134.72 49.2856L104.497 82.8744L109.067 127.689L67.5589 109.525L26.0511 127.689L30.6204 82.8744L0.397949 49.2856L44.7296 39.7525L67.5589 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M246.655 0.82959L269.484 39.7525L313.816 49.2856L283.593 82.8744L288.163 127.689L246.655 109.525L205.147 127.689L209.716 82.8744L179.494 49.2856L223.826 39.7525L246.655 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M425.751 0.82959L448.58 39.7525L492.911 49.2856L462.689 82.8744L467.258 127.689L425.751 109.525L384.243 127.689L388.812 82.8744L358.59 49.2856L402.921 39.7525L425.751 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M604.846 0.82959L627.675 39.7525L672.007 49.2856L641.785 82.8744L646.354 127.689L604.846 109.525L563.338 127.689L567.908 82.8744L537.685 49.2856L582.017 39.7525L604.846 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M783.942 0.82959L806.771 39.7525L851.103 49.2856L820.881 82.8744L825.45 127.689L783.942 109.525L742.434 127.689L747.004 82.8744L716.781 49.2856L761.113 39.7525L783.942 0.82959Z"
+                                fill="#FAD617" />
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -1425,9 +1268,8 @@
     </div>
     </div>
     <div id="page-3" class="content-container page">
-        <div class="close-container animation-close-button"><span class="next-button page-3-next">&times;</span></div>
         <main class="welcome-container">
-            <div class="close-container"><span id="close-button">&times;</span></div>
+            <div class="close-container animation-close-button"><span id="close-button">&times;</span></div>
             <div class="welcome">
                 <div class="welcome-video-container" id="video-container">
                     <video id="video" class="welcome-video-header" playsinline preload="metadata"></video>
@@ -1484,6 +1326,11 @@
                             </ul>
                         </div>
                     </div>
+
+
+                </div>
+
+                <div class="purchase-bottom-wrapper">
                     <div class="purchase-container" id="purchase-notice-box">
                         <div class="purchase-notice">
                             <div id="unlock-container" class="unlock-inkhunter-container text-center">
@@ -1506,36 +1353,27 @@
                                 </button>
                             </div>
                         </div>
-                        <footer class="legal-container" id="legal-container-box">
-                            <nav class="actions-container">
-                                <span class="purchase-disclaimer" id="purchase-disclaimer-box"> Subscription renews
-                                    automatically</span>
-                                <ul class="actions">
-                                    <li class="action-item"><span class="privacy-button">Privacy Policy</span></li>
-                                    <li class="action-item"><span class="restore-button">Restore Purchase</span></li>
-                                    <li class="action-item"><span class="terms-button">Terms of Service</span></li>
-                                </ul>
-                            </nav>
-                            <p class="legal"> In accordance with the iTunes Store Terms of Use which we
-                                recommend you review before proceeding with any online transaction, this subscription
-                                automatically
-                                renews.
-                                You can cancel anytime. By signing up for a subscription, you agree to the <span
-                                    class="terms-button">Terms of Service</span>
-                                and <span class="privacy-button">Privacy Policy</span></p>
-                            <div class="footer-text-container">
-                                <a href="#">Restore Purchase</a>
-                                <div>
-                                    <svg width="2" height="3" viewBox="0 0 2 3" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect y="0.5" width="2" height="2" rx="1" fill="#575B62" />
-                                    </svg>
-                                </div>
-                                <a href="#">Subscription information</a>
-                            </div>
-                        </footer>
                     </div>
 
+                    <footer class="legal-container" id="legal-container-box">
+                        <nav class="actions-container">
+                            <span class="purchase-disclaimer" id="purchase-disclaimer-box"> Subscription renews
+                                automatically</span>
+                            <ul class="actions">
+                                <li class="action-item"><span class="privacy-button">Privacy Policy</span></li>
+                                <li class="action-item"><span class="restore-button">Restore Purchase</span></li>
+                                <li class="action-item"><span class="terms-button">Terms of Service</span></li>
+                            </ul>
+                        </nav>
+                        <p class="legal"> In accordance with the iTunes Store Terms of Use which we
+                            recommend you review before proceeding with any online transaction, this subscription
+                            automatically
+                            renews.
+                            You can cancel anytime. By signing up for a subscription, you agree to the <span
+                                class="terms-button">Terms of Service</span>
+                            and <span class="privacy-button">Privacy Policy</span>
+                        </p>
+                    </footer>
                 </div>
             </div>
 
