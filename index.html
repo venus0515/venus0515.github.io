@@ -401,19 +401,13 @@
             padding: 0;
         }
 
-        .welcome-video-container {
-            margin: 0 auto;
-            background-size: cover;
-            background-position: center;
-        }
-
         .welcome-video-header {
             width: 100%;
             height: 100vw;
-            /*            max-width: 600px;*/
-            /* max-height: 50vh; */
-            object-fit: cover;
             object-position: bottom;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
         }
 
         .actions-container {
@@ -450,7 +444,7 @@
             width: 100%;
         }
 
-        @media only screen and (min-width: 767px) {
+        @media only screen and (min-width: 744px) {
             .welcome-video-header {
                 max-height: 50vh;
             }
@@ -1017,7 +1011,7 @@
             "e8b8": [function (require, module, exports) {
                 window.addEventListener("load", function () {
                     var e = window.screen, t = e.width / e.height;
-                    document.getElementById("video-container").style.backgroundImage = t < .55 ? 'url("https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/logo.jpg")' : 'url("https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/logo.jpg")'
+                    document.getElementById("video").style.backgroundImage = t < .55 ? 'url("https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/logo.jpg")' : 'url("https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/logo.jpg")'
                 }),
                     window.addEventListener("startup", function () {
                         startupInitiated = true;
