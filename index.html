@@ -570,8 +570,10 @@
 
         }
     </style>
-    <!-- <script type="application/w.params">%EXTRA_JSON%</script> -->
-    <script type="application/w.params">{"screen":"out-of-uses"}</script>
+    <script type="application/w.params">%EXTRA_JSON%</script>
+    <!-- <script type="application/w.params">{"screen":"out-of-uses"}</script>
+    <script type="application/w.params">{"screen":"out-of-uses", "unonboarding":"1"}</script>
+    <script type="application/w.params">{"screen":"out-of-uses", "unonboarding":"0"}</script> -->
 
     <script>
         const supportsFormData = 'FormData' in window;
@@ -1015,6 +1017,17 @@
                 }),
                     window.addEventListener("startup", function () {
                         startupInitiated = true;
+
+                        let params = window.getJSON() || {};
+
+                        if (params.unonboarding === "1" && params.screen === "out-of-uses") {
+                            showPage('page-3');
+                            // startVideoAndTimer();
+                        } else if (params.unonboarding === "0" && params.screen === "out-of-uses") {
+                            showPage('page-1');
+                        } else {
+                            showPage('page-1');
+                        }
                     });
             }, {}]
         }, {}, ["e8b8"], null)
@@ -1040,6 +1053,8 @@
         }
 
         let startupInitiated = false;
+        let videoTimerStarted = false;
+
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
@@ -1047,9 +1062,25 @@
             });
             document.getElementById(pageId).style.display = 'flex';
 
-            if (pageId === 'page-3' && startupInitiated) {
+            if (pageId === 'page-3' && startupInitiated && !videoTimerStarted) {
                 startVideoAndTimer();
+                videoTimerStarted = true;
             }
+        }
+
+        function playVideoWhenReady(video) {
+            return new Promise((resolve, reject) => {
+                if (video.readyState >= 3) {
+                    resolve(video.play());
+                } else {
+                    video.addEventListener('canplay', () => {
+                        resolve(video.play());
+                    });
+                    video.addEventListener('error', (e) => {
+                        reject(new Error('Video failed to load'));
+                    });
+                }
+            });
         }
 
         function startVideoAndTimer() {
@@ -1060,7 +1091,10 @@
             console.log(t);
             // l.src = t < .55 ? "/BUNDLE:Inkhunter_promo_square_10.mp4" : "/BUNDLE:Inkhunter_promo_square_10.mp4";
             l.src = t < .55 ? "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4" : "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4";
-            l.play();
+
+            playVideoWhenReady(l).catch(error => {
+                console.error('Error playing video:', error);
+            });
         }
 
         function renderCountdown(seconds) {
