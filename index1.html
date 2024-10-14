@@ -28,6 +28,7 @@
             display: flex;
             flex-direction: column;
             font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; */
             font-feature-settings: 'liga' 1, 'calt' 1;
             justify-content: center;
             align-items: center
@@ -59,6 +60,12 @@
             font-size: 30px;
         }
 
+        .preview-button {
+            cursor: pointer;
+            user-select: none;
+            font-size: 30px;
+        }
+
         .welcome-bg {
             position: absolute;
             width: 100%;
@@ -66,7 +73,8 @@
             object-fit: cover;
         }
 
-        .page-1-container {
+        .page-1-container,
+        .page-2-container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -86,20 +94,35 @@
             align-items: center;
         }
 
+        .page-2-container .welcome-content-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .page2-button-container {
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
         .page-1-container .welcome-content-box {
             width: 100%;
         }
 
-        #page-2 .welcome-content-container {
+        #page-3 .welcome-content-container {
             height: 100%;
         }
 
-        #page-2 .welcome-content-box {
+        #page-3 .welcome-content-box {
             height: 100%;
             justify-content: flex-end;
         }
 
-        #page-2 .welcome-content {
+        #page-3 .welcome-content {
             margin-top: 5px;
         }
 
@@ -109,6 +132,7 @@
             font-weight: 700;
             margin: 0;
             text-align: center;
+            /* padding-top: 14px; */
             line-height: normal;
         }
 
@@ -159,10 +183,31 @@
             align-items: center;
         }
 
-        .middle-content-box img {
-            width: 35px;
+        .middle-content-box svg {
+            width: 60%;
             height: auto;
+            margin-top: 30px;
         }
+
+        .list-content-box {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .list-content-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .list-content-item svg {
+            width: 12px;
+            height: 12px;
+        }
+
 
         @-webkit-keyframes fadeIn {
             from {
@@ -189,7 +234,7 @@
             animation: fadeIn 3s 1s forwards;
         }
 
-        #page-2::-webkit-scrollbar {
+        #page-3::-webkit-scrollbar {
             display: none;
         }
 
@@ -202,6 +247,21 @@
         .legal {
             font-size: 12px;
             text-align: center;
+        }
+
+        .footer-text-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            font-size: 12px;
+            padding-bottom: 28px;
+            padding-top: 20px;
+        }
+
+        .footer-text-container a {
+            color: #575B62;
+            font-weight: 600;
         }
 
         .welcome {
@@ -247,8 +307,9 @@
         }
 
         .actions {
-            display: flex;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
             list-style-type: none;
             padding: 0;
             margin: 0;
@@ -257,7 +318,7 @@
 
         .action-item {
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             white-space: nowrap;
         }
 
@@ -297,23 +358,15 @@
             color: #C7C7C7;
             margin-bottom: 5px;
             margin-top: 5px;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
             /* display: none; */
-        }
-
-        #hidden-bullet-component .placeholder-text-body {
-            margin: 0;
-        }
-
-        .placeholder-text-body-skip-text {
-            display: flex;
-            align-items: center;
         }
 
         #placeholder-text-body-skip {
             display: none;
+        }
+
+        .purchase-notice>* {
+            font-weight: 600;
         }
 
         .purchase-notice strong {
@@ -329,18 +382,12 @@
         .features-container ul {
             list-style: none;
             margin: 0;
-            padding-left: 0px;
+            padding-left: 30px;
         }
 
         .features-container li {
             color: #C7C7C7;
             font-size: 10px;
-        }
-
-        .features-container {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
         }
 
         .list-flex-box {
@@ -354,14 +401,9 @@
             padding: 0;
         }
 
-        .welcome-video-container {
-            display: flex;
-            justify-content: center;
-        }
-
         .welcome-video-header {
-            width: 50vh;
-            height: 50vh;
+            width: 100%;
+            height: 100vw;
             object-position: bottom;
             background-position: center;
             background-repeat: no-repeat;
@@ -418,7 +460,7 @@
             }
 
             .placeholder-text-body {
-                font-size: 12px;
+                font-size: 14px;
             }
 
             .features-container li {
@@ -426,12 +468,12 @@
             }
 
             .purchase-disclaimer {
-                font-size: 12px;
+                font-size: 14px;
             }
         }
 
         @media only screen and (min-height: 801px) {
-            #page-2 .welcome-content {
+            #page-3 .welcome-content {
                 margin-top: 20px;
             }
 
@@ -444,7 +486,7 @@
             }
 
             .placeholder-text-body {
-                font-size: 16px;
+                font-size: 14px;
             }
 
             .features-container li {
@@ -452,7 +494,7 @@
             }
 
             .purchase-disclaimer {
-                font-size: 16px;
+                font-size: 14px;
             }
 
             .unlock-inkhunter-container p {
@@ -483,14 +525,6 @@
                 font-size: 24px;
             }
 
-            .placeholder-text-body {
-                font-size: 24px;
-            }
-
-            .purchase-disclaimer {
-                font-size: 16px;
-            }
-
             .legal {
                 font-size: 14px;
             }
@@ -518,10 +552,6 @@
             .placeholder-text-body {
                 font-size: 20px;
                 margin: 10 0;
-            }
-
-            .features-container li {
-                font-size: 20px;
             }
 
             .unlock-inkhunter-container {
@@ -782,7 +812,11 @@
                 module.exports = {
                     title: "Unlock Premium",
                     subtitle: "",
-                    features: [],
+                    features: [
+                        "Unique content",
+                        "Access to exclusive spy network",
+                        "earn money by hacking in the game"
+                    ],
                     trialButtonText: "Start Your 3-day Free Trial",
                     immediateButtonText: "Start Subscription",
                     defaultPurchase: 0,
@@ -792,7 +826,19 @@
                         duration: 1,
                         period: "wk",
                         trial: !1
-                    },]
+                    }, {
+                        productId: "InkHunter.inkHunter.premium_week.premium_week",
+                        price: "%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%",
+                        duration: 1,
+                        period: "wk",
+                        trial: !1
+                    }, {
+                        productId: "InkHunter.inkHunter.premium_week.premium_week",
+                        price: "%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%",
+                        duration: 1,
+                        period: "wk",
+                        trial: !1
+                    }]
                 };
             }, {}],
 
@@ -837,7 +883,9 @@
                         return Array.from(t)
                     },
                     l = function (e) {
-                        var o = f("selected-product-price"),
+                        var t = document.getElementById("purchase-explanation"),
+                            r = document.getElementById("purchase-subtitle"),
+                            o = f("selected-product-price"),
                             u = f("selected-product-period");
                         t && e.trial ? t.innerText = "Then" : t
                             && (t.innerText = "Only"), r
@@ -849,8 +897,19 @@
                         document.getElementById("purchase-button").onclick = function () {
                             return e.purchase(t.productId)
                         };
+                        try {
+                            document.getElementById("purchase-button-2").onclick = function () {
+                                return e.purchase(t.productId)
+                            }
+                        } catch (n) {
+                        }
                     },
-
+                    s = function (e) {
+                        document.getElementById("option-1"),
+                            document.getElementById("option-2"),
+                            document.getElementById("option-3");
+                        p(d, selectedProduct2)
+                    },
                     m = function () {
                         var e = document.getElementById("purchase-form");
                         if (e) {
@@ -879,9 +938,12 @@
                             u = f("terms-button"),
                             v = f("fireEvent-9-button");
 
-                        r.forEach(function (t) {
-                            return t.onclick = e.openPrivacyPolicy
+                        f("option-radio").forEach(function (e) {
+                            return e.onclick = y
                         }),
+                            r.forEach(function (t) {
+                                return t.onclick = e.openPrivacyPolicy
+                            }),
                             o.forEach(function (t) {
                                 return t.onclick = e.restore
                             }),
@@ -957,7 +1019,7 @@
                         let params = window.getJSON() || {};
 
                         if (params.screen === "out-of-uses") {
-                            showPage('page-2');
+                            showPage('page-3');
                         } else {
                             showPage('page-1');
                         }
@@ -988,14 +1050,16 @@
         let startupInitiated = false;
         let videoTimerStarted = false;
 
+
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.style.display = 'none';
             });
             document.getElementById(pageId).style.display = 'flex';
 
-            if (pageId === 'page-2') {
-                initializePage3();
+            if (pageId === 'page-3' && startupInitiated && !videoTimerStarted) {
+                startVideoAndTimer();
+                videoTimerStarted = true;
             }
         }
 
@@ -1014,14 +1078,6 @@
             });
         }
 
-        function initializePage3() {
-            startupInitiated = true;
-            if (document.getElementById('page-2').style.display === 'flex') {
-                startVideoAndTimer();
-                videoTimerStarted = true;
-            }
-        }
-
         function startVideoAndTimer() {
             var e = window.screen, t = e.width / e.height, l = document.getElementById("video");
             let opts = window.getJSON() || {};
@@ -1030,6 +1086,7 @@
             console.log(t);
             // l.src = t < .55 ? "/BUNDLE:Inkhunter_promo_square_10.mp4" : "/BUNDLE:Inkhunter_promo_square_10.mp4";
             l.src = t < .55 ? "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4" : "https://inkhunter-static.s3.us-east-2.amazonaws.com/videos/Inkhunter_promo_square_10.mp4";
+
             playVideoWhenReady(l).catch(error => {
                 console.error('Error playing video:', error);
             });
@@ -1043,7 +1100,6 @@
                 let target = document.getElementById("unlock-container");
                 let targetskip = document.getElementById("placeholder-text-body-skip");
                 let targetdefault = document.getElementById("placeholder-text-body-default");
-                let bulletdefault = document.getElementById("hidden-bullet-component");
                 let targetnotice = document.getElementById("purchase-notice-box");
                 let purchaseBox = document.getElementById("purchase-disclaimer-box");
                 let legalPurchaseBox = document.getElementById("legal-container-box");
@@ -1057,7 +1113,6 @@
                     target.style.display = "block";
                     targetskip.style.display = "block";
                     targetdefault.style.display = "none";
-                    bulletdefault.style.display = "none";
 
                     seconds--;
                 } else {
@@ -1065,8 +1120,7 @@
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
-                    targetdefault.style.display = "flex";
-                    bulletdefault.style.display = "flex";
+                    targetdefault.style.display = "block";
 
                 }
             }
@@ -1076,13 +1130,63 @@
         }
 
         function renderType(type) {
-            if (type === "out-of-uses" && document.getElementById('page-2').style.display === 'flex') {
-                let time = (getJSON() || {}).timeout || 5;
+            if (type === "out-of-uses" && document.getElementById('page-3').style.display === 'flex') {
+                let time = (getJSON() || {}).timeout || 30;
                 renderCountdown(time);
             }
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+
+            const radios = document.querySelectorAll('.subscription-options input[type="radio"]');
+
+            var optionTitle = 'Lifetime';
+            var price = 0;
+            var optionBadge = 90;
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    radios.forEach(r => {
+                        r.closest('.subscription-options').classList.remove('checked');
+                    });
+                    if (this.checked) {
+                        this.closest('.subscription-options').classList.add('checked');
+                    }
+                });
+            });
+
+            var closeModalButton = document.getElementById('close-button');
+            var closeModalButton2 = document.getElementById('purchase-button-3');
+            var openModalButton = document.getElementById('final-modal-button');
+            var modal = document.getElementById('final-modal-container');
+
+            if (openModalButton && closeModalButton && closeModalButton2 && modal) {
+                closeModalButton.addEventListener('click', function () {
+                    modal.classList.add('modal-slide-down');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.classList.remove('modal-slide-down');
+                    }, 500);
+                });
+
+                closeModalButton2.addEventListener('click', function () {
+                    modal.classList.add('modal-slide-down');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.classList.remove('modal-slide-down');
+                    }, 500);
+                });
+
+                openModalButton.addEventListener('click', function () {
+                    modal.style.display = 'flex';
+                    modal.style.transform = 'translateY(100%)';
+                    setTimeout(() => {
+                        modal.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+            } else {
+                console.log('One or more elements are not found.');
+            }
 
             document.querySelectorAll('.next-button, .fireEvent-9-button').forEach(button => {
                 button.addEventListener('click', function () {
@@ -1107,6 +1211,16 @@
             }
 
             document.addEventListener('click', handleVideoPlayback, { once: true });
+
+            document.querySelectorAll('.preview-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const currentPage = this.closest('.page');
+                    const previewPage = currentPage.previousElementSibling;
+                    if (previewPage) {
+                        showPage(previewPage.id);
+                    }
+                });
+            });
 
             showPage('page-1');
         });
@@ -1133,7 +1247,50 @@
             </div>
         </div>
     </div>
+    </div>
     <div id="page-2" class="content-container page">
+        <div class="page-2-container">
+            <img class="welcome-bg" loading="lazy"
+                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/Flower_bg.jpg" alt="background">
+            <div class="welcome-content-container">
+                <div class="welcome-content-box">
+                    <div class="middle-content-box">
+                        <p class="welcome-title big-text">
+                            Help us grow
+                        </p>
+                        <p class="content-description">
+                            Show your love <br> by giving us a review on the App Store
+                        </p>
+                        <svg width="852" height="128" viewBox="0 0 852 128" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M67.5589 0.82959L90.3881 39.7525L134.72 49.2856L104.497 82.8744L109.067 127.689L67.5589 109.525L26.0511 127.689L30.6204 82.8744L0.397949 49.2856L44.7296 39.7525L67.5589 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M246.655 0.82959L269.484 39.7525L313.816 49.2856L283.593 82.8744L288.163 127.689L246.655 109.525L205.147 127.689L209.716 82.8744L179.494 49.2856L223.826 39.7525L246.655 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M425.751 0.82959L448.58 39.7525L492.911 49.2856L462.689 82.8744L467.258 127.689L425.751 109.525L384.243 127.689L388.812 82.8744L358.59 49.2856L402.921 39.7525L425.751 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M604.846 0.82959L627.675 39.7525L672.007 49.2856L641.785 82.8744L646.354 127.689L604.846 109.525L563.338 127.689L567.908 82.8744L537.685 49.2856L582.017 39.7525L604.846 0.82959Z"
+                                fill="#FAD617" />
+                            <path
+                                d="M783.942 0.82959L806.771 39.7525L851.103 49.2856L820.881 82.8744L825.45 127.689L783.942 109.525L742.434 127.689L747.004 82.8744L716.781 49.2856L761.113 39.7525L783.942 0.82959Z"
+                                fill="#FAD617" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="page2-button-container">
+                <div class="bottom-content-box">
+                    <button class="main-button fireEvent-9-button">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="page-3" class="content-container page">
         <main class="welcome-container">
             <div class="close-container animation-close-button"><span id="close-button">&times;</span></div>
             <div class="welcome">
@@ -1189,29 +1346,11 @@
                                     </div>
                                     <span>Share That Dope Design</span>
                                 </li>
-                                <li class="list-flex-box" id="hidden-bullet-component">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                            viewBox="0 0 14 11" fill="none">
-                                            <path
-                                                d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
-                                                stroke="#4F7976" stroke-width="2" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                    <h2 class="placeholder-text-body" id="placeholder-text-body-default">
-                                        <span>Only </span>&nbsp;
-                                        <!-- <span class="selected-product-price">
-                                        </span> -->
-                                        <span class="">
-                                            $1
-                                        </span>
-                                        <span>/</span>
-                                        <span class="selected-product-period"></span>
-                                    </h2>
-                                </li>
                             </ul>
                         </div>
                     </div>
+
+
                 </div>
 
                 <div class="purchase-bottom-wrapper">
@@ -1221,13 +1360,19 @@
                             </div>
                             <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
                                 <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
-                                <div class="placeholder-text-body-skip-text">
-                                    <span> Upgrade to try for only</span>&nbsp;
-                                    <!-- <span class="selected-product-price"></span> -->
-                                    <span class="">$1</span>
-                                    <span>/</span><span
-                                        class="selected-product-period"></span>
-                                </div>
+                                <!-- <span class="selected-product-price"></span><span>/</span><span
+                                    class="selected-product-period"></span> -->
+                                <span> Upgrade to try for only</span>&nbsp;
+                                <span
+                                    class="">%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%</span><span>/</span><span
+                                    class="">wk</span>
+                            </h2>
+                            <h2 class="placeholder-text-body" id="placeholder-text-body-default">
+                                <!-- <span>only </span><span class="selected-product-price"></span><span>/</span><span
+                                    class="selected-product-period"></span> -->
+                                <span>only</span>&nbsp;<span
+                                    class="">%PRODUCT_InkHunter.inkHunter.premium_week.premium_week%</span><span>/</span><span
+                                    class="">wk</span>
                             </h2>
                             <div class="bottom-content-box">
                                 <button id="purchase-button" class="main-button pulse">
