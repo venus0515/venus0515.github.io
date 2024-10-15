@@ -403,10 +403,6 @@
                 font-size: 20px;
                 font-weight: 600;
             }
-
-            .timer-box {
-                margin-bottom: 5px;
-            }
         }
 
         @media only screen and (min-width: 744px) {
@@ -1053,6 +1049,10 @@
                 let purchaseBox = document.getElementById("purchase-disclaimer-box");
                 let legalPurchaseBox = document.getElementById("legal-container-box");
                 let welcomeContentSpacing = document.getElementById("welcome-content-spacing");
+                let timerBoxSpacing = document.getElementById("timer-box-spacing");
+
+                const under320Screen = window.innerWidth <= 320;
+                const under375Screen = window.innerWidth > 320 && window.innerWidth <= 375;
 
                 if (seconds > 0) {
                     let minutes = Math.floor(seconds / 60);
@@ -1064,7 +1064,16 @@
                     targetskip.style.display = "block";
                     targetdefault.style.display = "none";
                     bulletdefault.style.display = "none";
-                    welcomeContentSpacing.style.marginTop = "5px";
+
+                    if (under320Screen) {
+                        timerBoxSpacing.style.marginBottom = "5px";
+                        welcomeContentSpacing.style.marginTop = "5px";
+                    }
+
+                    if (under375Screen) {
+                        timerBoxSpacing.style.marginBottom = "20px";
+                        welcomeContentSpacing.style.marginTop = "25px";
+                    }
 
                     seconds--;
                 } else {
@@ -1074,7 +1083,16 @@
                     targetskip.style.display = "none";
                     targetdefault.style.display = "flex";
                     bulletdefault.style.display = "flex";
-                    welcomeContentSpacing.style.marginTop = "12%";
+
+                    if (under320Screen) {
+                        timerBoxSpacing.style.marginBottom = "0px";
+                        welcomeContentSpacing.style.marginTop = "12%";
+                    }
+
+                    if (under375Screen) {
+                        timerBoxSpacing.style.marginBottom = "0px";
+                        welcomeContentSpacing.style.marginTop = "15%";
+                    }
                 }
             }
 
@@ -1224,7 +1242,7 @@
                 <div class="purchase-bottom-wrapper">
                     <div class="purchase-container" id="purchase-notice-box">
                         <div class="purchase-notice">
-                            <div class="timer-box">
+                            <div class="timer-box" id="timer-box-spacing">
                                 <div id="unlock-container" class="unlock-inkhunter-container text-center">
                                 </div>
                                 <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
