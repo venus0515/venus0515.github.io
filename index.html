@@ -1179,7 +1179,7 @@
 
         function renderType(type) {
             if (type === "out-of-uses" && document.getElementById('page-2').style.display === 'flex') {
-                let time = (getJSON() || {}).timeout || 300;
+                let time = (getJSON() || {}).timeout || 6;
                 renderCountdown(time);
             }
         }
