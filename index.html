@@ -99,10 +99,6 @@
             justify-content: flex-end;
         }
 
-        #page-2 .welcome-content {
-            margin-top: 5px;
-        }
-
         .welcome-title {
             font-size: 20px;
             color: #ffffff;
@@ -402,6 +398,17 @@
             width: 100%;
         }
 
+        @media only screen and (min-width: 320px) {
+            .welcome-title {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .timer-box {
+                margin-bottom: 5px;
+            }
+        }
+
         @media only screen and (min-width: 744px) {
             .welcome-video-header {
                 max-height: 50vh;
@@ -431,9 +438,6 @@
         }
 
         @media only screen and (min-height: 801px) {
-            #page-2 .welcome-content {
-                margin-top: 20px;
-            }
 
             .welcome-title {
                 font-size: 28px;
@@ -1048,6 +1052,7 @@
                 let targetnotice = document.getElementById("purchase-notice-box");
                 let purchaseBox = document.getElementById("purchase-disclaimer-box");
                 let legalPurchaseBox = document.getElementById("legal-container-box");
+                let welcomeContentSpacing = document.getElementById("welcome-content-spacing");
 
                 if (seconds > 0) {
                     let minutes = Math.floor(seconds / 60);
@@ -1059,6 +1064,7 @@
                     targetskip.style.display = "block";
                     targetdefault.style.display = "none";
                     bulletdefault.style.display = "none";
+                    welcomeContentSpacing.style.marginTop = "5px";
 
                     seconds--;
                 } else {
@@ -1068,7 +1074,7 @@
                     targetskip.style.display = "none";
                     targetdefault.style.display = "flex";
                     bulletdefault.style.display = "flex";
-
+                    welcomeContentSpacing.style.marginTop = "12%";
                 }
             }
 
@@ -1078,7 +1084,7 @@
 
         function renderType(type) {
             if (type === "out-of-uses" && document.getElementById('page-2').style.display === 'flex') {
-                let time = (getJSON() || {}).timeout || 100;
+                let time = (getJSON() || {}).timeout || 3;
                 renderCountdown(time);
             }
         }
@@ -1141,7 +1147,7 @@
                 <div class="welcome-video-container" id="video-container">
                     <video id="video" class="welcome-video-header" playsinline preload="metadata"></video>
                 </div>
-                <div class="welcome-content">
+                <div class="welcome-content" id="welcome-content-spacing">
                     <div class="welcome-content-text-box">
                         <h1 class="welcome-title">Find Your Next Tattoo</h1>
                         <div class="features-container">
@@ -1218,17 +1224,19 @@
                 <div class="purchase-bottom-wrapper">
                     <div class="purchase-container" id="purchase-notice-box">
                         <div class="purchase-notice">
-                            <div id="unlock-container" class="unlock-inkhunter-container text-center">
-                            </div>
-                            <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
-                                <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
-                                <div class="placeholder-text-body-skip-text">
-                                    <span> Upgrade to try for only</span>&nbsp;
-                                    <!-- <span class="selected-product-price"></span> -->
-                                    <span class="">$1</span>
-                                    <span>/</span><span class="selected-product-period"></span>
+                            <div class="timer-box">
+                                <div id="unlock-container" class="unlock-inkhunter-container text-center">
                                 </div>
-                            </h2>
+                                <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
+                                    <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
+                                    <div class="placeholder-text-body-skip-text">
+                                        <span> Upgrade to try for only</span>&nbsp;
+                                        <!-- <span class="selected-product-price"></span> -->
+                                        <span class="">$1</span>
+                                        <span>/</span><span class="selected-product-period"></span>
+                                    </div>
+                                </h2>
+                            </div>
                             <div class="bottom-content-box">
                                 <button id="purchase-button" class="main-button pulse">
                                     <p class="purchase-button-text purchase-button-price">Continue</p>
