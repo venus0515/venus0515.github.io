@@ -405,31 +405,56 @@
             }
         }
 
-        @media only screen and (min-width: 744px) {
-            .welcome-video-header {
-                max-height: 50vh;
-            }
-
+        @media only screen and (min-width: 375px) {
             .welcome-title {
-                font-size: 24px;
-            }
-        }
-
-        @media only screen and (max-height: 800px) and (min-height: 700px) {
-            .welcome-title {
-                font-size: 28px;
+                font-size: 20px;
+                font-weight: 700;
             }
 
-            .placeholder-text-body {
-                font-size: 12px;
+            .features-container ul {
+                margin-top: 5px;
             }
 
             .features-container li {
                 font-size: 14px;
             }
 
-            .purchase-disclaimer {
+            .main-button {
+                height: 50px;
+                font-size: 18px;
+            }
+
+            .unlock-inkhunter-container p.big {
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            .unlock-inkhunter-container p {
+                font-size: 16px;
+            }
+
+            .placeholder-text-body {
                 font-size: 12px;
+            }
+        }
+
+        @media only screen and (min-width: 414px) {
+            .welcome-title {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            .unlock-inkhunter-container p.big {
+                font-size: 26px;
+                font-weight: 700;
+            }
+
+            .unlock-inkhunter-container p {
+                font-size: 18px;
+            }
+
+            .features-container li {
+                font-size: 16px;
             }
         }
 
@@ -440,7 +465,7 @@
             }
 
             .features-container ul {
-                padding-top: 20px;
+                padding-top: 10px;
             }
 
             .placeholder-text-body {
@@ -493,11 +518,6 @@
 
             .legal {
                 font-size: 14px;
-            }
-
-            .main-button {
-                height: 50px;
-                font-size: 18px;
             }
 
             .unlock-inkhunter-container p {
@@ -1053,6 +1073,7 @@
 
                 const under320Screen = window.innerWidth <= 320;
                 const under375Screen = window.innerWidth > 320 && window.innerWidth <= 375;
+                const under414Screen = window.innerWidth > 375 && window.innerWidth <= 414;
 
                 if (seconds > 0) {
                     let minutes = Math.floor(seconds / 60);
@@ -1071,8 +1092,13 @@
                     }
 
                     if (under375Screen) {
-                        timerBoxSpacing.style.marginBottom = "20px";
-                        welcomeContentSpacing.style.marginTop = "25px";
+                        timerBoxSpacing.style.marginBottom = "5px";
+                        welcomeContentSpacing.style.marginTop = "10px";
+                    }
+
+                    if (under414Screen) {
+                        timerBoxSpacing.style.marginBottom = "10px";
+                        welcomeContentSpacing.style.marginTop = "15px";
                     }
 
                     seconds--;
@@ -1085,13 +1111,18 @@
                     bulletdefault.style.display = "flex";
 
                     if (under320Screen) {
-                        timerBoxSpacing.style.marginBottom = "0px";
+                        timerBoxSpacing.style.marginBottom = "0";
                         welcomeContentSpacing.style.marginTop = "12%";
                     }
 
                     if (under375Screen) {
-                        timerBoxSpacing.style.marginBottom = "0px";
-                        welcomeContentSpacing.style.marginTop = "15%";
+                        timerBoxSpacing.style.marginBottom = "0";
+                        welcomeContentSpacing.style.marginTop = "14%";
+                    }
+
+                    if (under414Screen) {
+                        timerBoxSpacing.style.marginBottom = "0";
+                        welcomeContentSpacing.style.marginTop = "14%";
                     }
                 }
             }
