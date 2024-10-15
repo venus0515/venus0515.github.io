@@ -440,7 +440,7 @@
 
         @media only screen and (min-width: 390px) {
             .welcome-title {
-                font-size: 26px;
+                font-size: 24px;
                 font-weight: 700;
             }
 
@@ -452,13 +452,8 @@
                 font-size: 16px;
             }
 
-            .main-button {
-                height: 50px;
-                font-size: 18px;
-            }
-
             .unlock-inkhunter-container p.big {
-                font-size: 26px;
+                font-size: 24px;
                 font-weight: 700;
             }
 
@@ -1073,7 +1068,8 @@
 
                 const under320Screen = window.innerWidth <= 320;
                 const under375Screen = window.innerWidth > 320 && window.innerWidth <= 375;
-                const under414Screen = window.innerWidth > 375 && window.innerWidth <= 414;
+                const under390Screen = window.innerWidth > 375 && window.innerWidth <= 390;
+                const under414Screen = window.innerWidth > 390 && window.innerWidth <= 414;
 
                 if (seconds > 0) {
                     let minutes = Math.floor(seconds / 60);
@@ -1096,6 +1092,11 @@
                         welcomeContentSpacing.style.marginTop = "10px";
                     }
 
+                    if (under390Screen) {
+                        timerBoxSpacing.style.marginBottom = "5px";
+                        welcomeContentSpacing.style.marginTop = "10px";
+                    }
+
                     if (under414Screen) {
                         timerBoxSpacing.style.marginBottom = "10px";
                         welcomeContentSpacing.style.marginTop = "15px";
@@ -1112,10 +1113,15 @@
 
                     if (under320Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "12%";
+                        welcomeContentSpacing.style.marginTop = "11%";
                     }
 
                     if (under375Screen) {
+                        timerBoxSpacing.style.marginBottom = "0";
+                        welcomeContentSpacing.style.marginTop = "14%";
+                    }
+
+                    if (under390Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
                         welcomeContentSpacing.style.marginTop = "14%";
                     }
