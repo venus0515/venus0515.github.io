@@ -324,8 +324,8 @@
 
         .features-container ul {
             list-style: none;
-            margin: 0;
             padding-left: 0px;
+            margin: 0;
         }
 
         .features-container li {
@@ -412,10 +412,6 @@
                 font-weight: 700;
             }
 
-            .features-container ul {
-                margin-top: 5px;
-            }
-
             .features-container li {
                 font-size: 14px;
             }
@@ -443,10 +439,6 @@
             .welcome-title {
                 font-size: 24px;
                 font-weight: 700;
-            }
-
-            .features-container ul {
-                margin-top: 5px;
             }
 
             .features-container li {
@@ -485,19 +477,11 @@
             .features-container li {
                 font-size: 16px;
             }
-
-            .features-container ul {
-                margin-top: 5px;
-            }
         }
 
         @media only screen and (min-width: 768px) {
             .welcome-title {
                 font-size: 38px;
-            }
-
-            .features-container ul {
-                margin-top: 15px;
             }
 
             .unlock-inkhunter-container p.big {
@@ -1043,6 +1027,7 @@
                 let legalPurchaseBox = document.getElementById("legal-container-box");
                 let welcomeContentSpacing = document.getElementById("welcome-content-spacing");
                 let timerBoxSpacing = document.getElementById("timer-box-spacing");
+                let featuresContainerSpacing = document.getElementById("features-container-spacing");
 
                 const under320Screen = window.innerWidth <= 320;
                 const under375Screen = window.innerWidth > 320 && window.innerWidth <= 375;
@@ -1064,26 +1049,31 @@
                     if (under320Screen) {
                         timerBoxSpacing.style.marginBottom = "5px";
                         welcomeContentSpacing.style.marginTop = "10px";
+                        featuresContainerSpacing.style.marginTop = "0px";
                     }
 
                     if (under375Screen) {
                         timerBoxSpacing.style.marginBottom = "5px";
                         welcomeContentSpacing.style.marginTop = "10px";
+                        featuresContainerSpacing.style.marginTop = "5px";
                     }
 
                     if (under390Screen) {
                         timerBoxSpacing.style.marginBottom = "5px";
                         welcomeContentSpacing.style.marginTop = "10px";
+                        featuresContainerSpacing.style.marginTop = "5px";
                     }
 
                     if (under414Screen) {
                         timerBoxSpacing.style.marginBottom = "10px";
                         welcomeContentSpacing.style.marginTop = "15px";
+                        featuresContainerSpacing.style.marginTop = "10px";
                     }
 
                     if (under768Screen) {
                         timerBoxSpacing.style.marginBottom = "20px";
                         welcomeContentSpacing.style.marginTop = "25px";
+                        featuresContainerSpacing.style.marginTop = "10px";
                     }
 
                     seconds--;
@@ -1097,27 +1087,32 @@
 
                     if (under320Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "11%";
+                        welcomeContentSpacing.style.marginTop = "8%";
+                        featuresContainerSpacing.style.marginTop = "20px";
                     }
 
                     if (under375Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "11%";
+                        welcomeContentSpacing.style.marginTop = "10%";
+                        featuresContainerSpacing.style.marginTop = "26px";
                     }
 
                     if (under390Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "12%";
+                        welcomeContentSpacing.style.marginTop = "11%";
+                        featuresContainerSpacing.style.marginTop = "30px";
                     }
 
                     if (under414Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "14%";
+                        welcomeContentSpacing.style.marginTop = "12%";
+                        featuresContainerSpacing.style.marginTop = "30px";
                     }
 
                     if (under768Screen) {
                         timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "16%";
+                        welcomeContentSpacing.style.marginTop = "14%";
+                        featuresContainerSpacing.style.marginTop = "40px";
                     }
                 }
             }
@@ -1128,7 +1123,7 @@
 
         function renderType(type) {
             if (type === "out-of-uses" && document.getElementById('page-2').style.display === 'flex') {
-                let time = (getJSON() || {}).timeout || 17;
+                let time = (getJSON() || {}).timeout || 2;
                 renderCountdown(time);
             }
         }
@@ -1194,7 +1189,7 @@
                 <div class="welcome-content" id="welcome-content-spacing">
                     <div class="welcome-content-text-box">
                         <h1 class="welcome-title">Find Your Next Tattoo</h1>
-                        <div class="features-container">
+                        <div class="features-container" id="features-container-spacing">
                             <ul id="features-list">
                                 <li class="list-flex-box">
                                     <div>
