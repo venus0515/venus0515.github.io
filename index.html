@@ -213,9 +213,11 @@
         }
 
         .welcome-content-text-box {
+            height: calc(50vh - 110px);
             display: flex;
             flex-direction: column;
             margin: 0 auto;
+            justify-content: space-evenly;
         }
 
         .purchase-bottom-wrapper {
@@ -306,6 +308,7 @@
         .placeholder-text-body-skip-text {
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         #placeholder-text-body-skip {
@@ -407,6 +410,15 @@
         }
 
         @media only screen and (min-width: 375px) {
+            .welcome-content-text-box {
+                height: calc(50vh - 120px);
+            }
+
+            .main-button {
+                font-size: 18px;
+                height: 50px;
+            }
+
             .welcome-title {
                 font-size: 24px;
                 font-weight: 700;
@@ -414,11 +426,6 @@
 
             .features-container li {
                 font-size: 14px;
-            }
-
-            .main-button {
-                height: 50px;
-                font-size: 18px;
             }
 
             .unlock-inkhunter-container p.big {
@@ -1052,39 +1059,10 @@
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
 
                     target.style.display = "block";
+                    timerBoxSpacing.style.display = "block";
                     targetskip.style.display = "block";
                     targetdefault.style.display = "none";
                     bulletdefault.style.display = "none";
-
-                    if (under320Screen) {
-                        timerBoxSpacing.style.marginBottom = "5px";
-                        welcomeContentSpacing.style.marginTop = "10px";
-                        featuresContainerSpacing.style.marginTop = "0px";
-                    }
-
-                    if (under375Screen) {
-                        timerBoxSpacing.style.marginBottom = "5px";
-                        welcomeContentSpacing.style.marginTop = "10px";
-                        featuresContainerSpacing.style.marginTop = "5px";
-                    }
-
-                    if (under390Screen) {
-                        timerBoxSpacing.style.marginBottom = "5px";
-                        welcomeContentSpacing.style.marginTop = "10px";
-                        featuresContainerSpacing.style.marginTop = "5px";
-                    }
-
-                    if (under414Screen) {
-                        timerBoxSpacing.style.marginBottom = "10px";
-                        welcomeContentSpacing.style.marginTop = "15px";
-                        featuresContainerSpacing.style.marginTop = "5px";
-                    }
-
-                    if (under768Screen) {
-                        timerBoxSpacing.style.marginBottom = "20px";
-                        welcomeContentSpacing.style.marginTop = "25px";
-                        featuresContainerSpacing.style.marginTop = "5px";
-                    }
 
                     seconds--;
                 } else {
@@ -1092,38 +1070,10 @@
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
+                    timerBoxSpacing.style.display = "none";
                     targetdefault.style.display = "flex";
                     bulletdefault.style.display = "flex";
 
-                    if (under320Screen) {
-                        timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "7%";
-                        featuresContainerSpacing.style.marginTop = "20px";
-                    }
-
-                    if (under375Screen) {
-                        timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "8.5%";
-                        featuresContainerSpacing.style.marginTop = "25px";
-                    }
-
-                    if (under390Screen) {
-                        timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "8.5%";
-                        featuresContainerSpacing.style.marginTop = "26px";
-                    }
-
-                    if (under414Screen) {
-                        timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "9%";
-                        featuresContainerSpacing.style.marginTop = "27px";
-                    }
-
-                    if (under768Screen) {
-                        timerBoxSpacing.style.marginBottom = "0";
-                        welcomeContentSpacing.style.marginTop = "10%";
-                        featuresContainerSpacing.style.marginTop = "40px";
-                    }
                 }
             }
 
@@ -1256,36 +1206,34 @@
                                     </div>
                                     <div class="" id="placeholder-text-body-default">
                                         <span>Only </span>&nbsp;
-                                        <!-- <span class="selected-product-price">
-                                        </span> -->
-                                        <span class="">
-                                            $1
-                                        </span>
+                                        <!-- <span class="selected-product-price"></span> -->
+                                        <span class=""> $1 </span>
                                         <span>/</span>
                                         <span class="selected-product-period"></span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
+                        <div class="timer-box" id="timer-box-spacing">
+                            <div id="unlock-container" class="unlock-inkhunter-container text-center">
+                            </div>
+                            <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
+                                <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
+                                <div class="placeholder-text-body-skip-text">
+                                    <span> Upgrade to try for only</span>&nbsp;
+                                    <!-- <span class="selected-product-price"></span> -->
+                                    <span class="">$1</span>
+                                    <span>/</span>
+                                    <span class="selected-product-period"></span>
+                                </div>
+                            </h2>
+                        </div>
                     </div>
                 </div>
-
                 <div class="purchase-bottom-wrapper">
                     <div class="purchase-container" id="purchase-notice-box">
                         <div class="purchase-notice">
-                            <div class="timer-box" id="timer-box-spacing">
-                                <div id="unlock-container" class="unlock-inkhunter-container text-center">
-                                </div>
-                                <h2 class="placeholder-text-body" id="placeholder-text-body-skip">
-                                    <p style="margin: 0 !important;"><i>or, Skip the line</i></p>
-                                    <div class="placeholder-text-body-skip-text">
-                                        <span> Upgrade to try for only</span>&nbsp;
-                                        <!-- <span class="selected-product-price"></span> -->
-                                        <span class="">$1</span>
-                                        <span>/</span><span class="selected-product-period"></span>
-                                    </div>
-                                </h2>
-                            </div>
+
                             <div class="bottom-content-box">
                                 <button id="purchase-button" class="main-button pulse">
                                     <p class="purchase-button-text purchase-button-price">Continue</p>
