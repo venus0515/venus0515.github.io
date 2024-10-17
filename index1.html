@@ -66,7 +66,8 @@
             object-fit: cover;
         }
 
-        .page-1-container {
+        .page-1-container,
+        .page-2-container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -86,17 +87,36 @@
             align-items: center;
         }
 
+        .page-2-container .welcome-content-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .page2-button-container {
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
         .page-1-container .welcome-content-box {
             width: 100%;
         }
 
-        #page-2 .welcome-content-container {
+        #page-3 .welcome-content-container {
             height: 100%;
         }
 
-        #page-2 .welcome-content-box {
+        #page-3 .welcome-content-box {
             height: 100%;
             justify-content: flex-end;
+        }
+
+        #page-3 .welcome-content {
+            margin-top: 5px;
         }
 
         .welcome-title {
@@ -185,7 +205,7 @@
             animation: fadeIn 3s 1s forwards;
         }
 
-        #page-2::-webkit-scrollbar {
+        #page-3::-webkit-scrollbar {
             display: none;
         }
 
@@ -245,8 +265,9 @@
         }
 
         .actions {
-            display: flex;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
             list-style-type: none;
             padding: 0;
             margin: 0;
@@ -255,7 +276,7 @@
 
         .action-item {
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             white-space: nowrap;
         }
 
@@ -299,6 +320,13 @@
             display: flex;
             align-items: center;
             /* display: none; */
+        }
+
+        .placeholder-text-body.default-price {
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #hidden-bullet-component .placeholder-text-body {
@@ -437,6 +465,10 @@
                 font-size: 14px;
             }
 
+            .placeholder-text-body.default-price {
+                font-size: 14px;
+            }
+
             .unlock-inkhunter-container p.big {
                 font-size: 24px;
                 font-weight: 700;
@@ -463,6 +495,10 @@
             }
 
             .features-container li {
+                font-size: 16px;
+            }
+
+            .placeholder-text-body.default-price {
                 font-size: 16px;
             }
 
@@ -503,6 +539,10 @@
             .features-container li {
                 font-size: 16px;
             }
+
+            .placeholder-text-body.default-price {
+                font-size: 16px;
+            }
         }
 
         @media only screen and (min-width: 768px) {
@@ -526,6 +566,10 @@
             .features-container li {
                 font-size: 20px;
                 margin-bottom: 5px;
+            }
+
+            .placeholder-text-body.default-price {
+                font-size: 20px;
             }
 
             .list-flex-box svg {
@@ -961,7 +1005,7 @@
                         let params = window.getJSON() || {};
 
                         if (params.screen === "out-of-uses") {
-                            showPage('page-2');
+                            showPage('page-3');
                         } else {
                             showPage('page-1');
                         }
@@ -998,7 +1042,7 @@
             });
             document.getElementById(pageId).style.display = 'flex';
 
-            if (pageId === 'page-2') {
+            if (pageId === 'page-3') {
                 initializePage3();
             }
         }
@@ -1020,7 +1064,7 @@
 
         function initializePage3() {
             startupInitiated = true;
-            if (document.getElementById('page-2').style.display === 'flex') {
+            if (document.getElementById('page-3').style.display === 'flex') {
                 startVideoAndTimer();
                 videoTimerStarted = true;
             }
@@ -1047,19 +1091,13 @@
                 let target = document.getElementById("unlock-container");
                 let targetskip = document.getElementById("placeholder-text-body-skip");
                 let targetdefault = document.getElementById("placeholder-text-body-default");
-                let bulletdefault = document.getElementById("hidden-bullet-component");
                 let targetnotice = document.getElementById("purchase-notice-box");
                 let purchaseBox = document.getElementById("purchase-disclaimer-box");
                 let legalPurchaseBox = document.getElementById("legal-container-box");
+
                 let welcomeContentSpacing = document.getElementById("welcome-content-spacing");
                 let timerBoxSpacing = document.getElementById("timer-box-spacing");
                 let featuresContainerSpacing = document.getElementById("features-container-spacing");
-
-                const under320Screen = window.innerWidth <= 320;
-                const under375Screen = window.innerWidth > 320 && window.innerWidth <= 375;
-                const under390Screen = window.innerWidth > 375 && window.innerWidth <= 390;
-                const under414Screen = window.innerWidth > 390 && window.innerWidth <= 414;
-                const under768Screen = window.innerWidth > 414;
 
                 if (seconds > 0) {
                     let minutes = Math.floor(seconds / 60);
@@ -1068,10 +1106,9 @@
                     target.innerHTML = `<p>Please wait</p> <p class="big">${timeString}</p>`;
 
                     target.style.display = "block";
-                    timerBoxSpacing.style.display = "block";
                     targetskip.style.display = "block";
                     targetdefault.style.display = "none";
-                    bulletdefault.style.display = "none";
+                    timerBoxSpacing.style.display = "block";
 
                     seconds--;
                 } else {
@@ -1079,10 +1116,8 @@
 
                     target.style.display = "none";
                     targetskip.style.display = "none";
-                    timerBoxSpacing.style.display = "none";
                     targetdefault.style.display = "flex";
-                    bulletdefault.style.display = "flex";
-
+                    timerBoxSpacing.style.display = "none";
                 }
             }
 
@@ -1091,7 +1126,7 @@
         }
 
         function renderType(type) {
-            if (type === "out-of-uses" && document.getElementById('page-2').style.display === 'flex') {
+            if (type === "out-of-uses" && document.getElementById('page-3').style.display === 'flex') {
                 let time = (getJSON() || {}).timeout || 5;
                 renderCountdown(time);
             }
@@ -1149,20 +1184,50 @@
         </div>
     </div>
     <div id="page-2" class="content-container page">
+        <div class="page-2-container">
+            <img class="welcome-bg" loading="lazy"
+                src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/Flower_bg.jpg" alt="background">
+            <div class="welcome-content-container">
+                <div class="welcome-content-box">
+                    <div class="middle-content-box">
+                        <p class="welcome-title big-text">
+                            Help us grow
+                        </p>
+                        <p class="content-description">
+                            Show your love <br> by giving us a review on the App Store
+                        </p>
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <img src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/star.svg" alt="star" />
+                            <img src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/star.svg" alt="star" />
+                            <img src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/star.svg" alt="star" />
+                            <img src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/star.svg" alt="star" />
+                            <img src="https://inkhunter-static.s3.us-east-2.amazonaws.com/p/v2/star.svg" alt="star" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page2-button-container">
+                <div class="bottom-content-box">
+                    <button class="main-button fireEvent-9-button">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page-3" class="content-container page">
         <main class="welcome-container">
             <div class="close-container animation-close-button"><span id="close-button">&times;</span></div>
             <div class="welcome">
                 <div class="welcome-video-container" id="video-container">
                     <video id="video" class="welcome-video-header" playsinline preload="metadata"></video>
                 </div>
-                <div class="welcome-content" id="welcome-content-spacing">
+                <div class="welcome-content">
                     <div class="welcome-content-text-box">
                         <h1 class="welcome-title">Find Your Next Tattoo</h1>
-                        <div class="features-container" id="features-container-spacing">
+                        <div class="features-container">
                             <ul id="features-list">
                                 <li class="list-flex-box">
                                     <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
                                             viewBox="0 0 14 11" fill="none">
                                             <path
                                                 d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
@@ -1173,7 +1238,7 @@
                                 </li>
                                 <li class="list-flex-box">
                                     <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
                                             viewBox="0 0 14 11" fill="none">
                                             <path
                                                 d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
@@ -1184,7 +1249,7 @@
                                 </li>
                                 <li class="list-flex-box">
                                     <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
                                             viewBox="0 0 14 11" fill="none">
                                             <path
                                                 d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
@@ -1195,7 +1260,7 @@
                                 </li>
                                 <li class="list-flex-box">
                                     <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
                                             viewBox="0 0 14 11" fill="none">
                                             <path
                                                 d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
@@ -1203,23 +1268,6 @@
                                         </svg>
                                     </div>
                                     <span>Share That Dope Design</span>
-                                </li>
-                                <li class="list-flex-box" id="hidden-bullet-component">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11"
-                                            viewBox="0 0 14 11" fill="none">
-                                            <path
-                                                d="M1 6.06567L4.63536 8.79219C5.1069 9.14585 5.77197 9.07284 6.15556 8.62532L12.1841 1.59204"
-                                                stroke="#4F7976" stroke-width="2" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                    <div class="" id="placeholder-text-body-default">
-                                        <span>Only </span>&nbsp;
-                                        <!-- <span class="selected-product-price"></span> -->
-                                        <span class=""> $1 </span>
-                                        <span>/</span>
-                                        <span class="selected-product-period"></span>
-                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -1237,12 +1285,19 @@
                                 </div>
                             </h2>
                         </div>
+                        <h2 class="placeholder-text-body default-price" id="placeholder-text-body-default">
+                            <span>Only </span>&nbsp;
+                            <!-- <span class="selected-product-price"></span> -->
+                            <span class="">$1</span>
+                            <span>/</span>
+                            <span class="selected-product-period"></span>
+                        </h2>
                     </div>
                 </div>
+
                 <div class="purchase-bottom-wrapper">
                     <div class="purchase-container" id="purchase-notice-box">
                         <div class="purchase-notice">
-
                             <div class="bottom-content-box">
                                 <button id="purchase-button" class="main-button pulse">
                                     <p class="purchase-button-text purchase-button-price">Continue</p>
